@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     lib: {
-      name: '@enhancedocs/search',
+      name: 'enhancedocs-search',
       entry: './lib/index.ts',
     },
     emptyOutDir: false,
