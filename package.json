@@ -1,8 +1,13 @@
 {
   "name": "@enhancedocs/search",
+  "description": "EnhanceDocs Search",
   "version": "0.0.1",
   "license": "MIT",
   "author": "EnhanceDocs",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:enhancedocs/enhancedocs-search.git"
+  },
   "type": "module",
   "scripts": {
     "start": "start-storybook -p 6006",
