@@ -1,7 +1,7 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "author": "EnhanceDocs",
   "repository": {
@@ -9,6 +9,7 @@
     "url": "git@github.com:enhancedocs/enhancedocs-search.git"
   },
   "type": "module",
+  "files": ["dist/**/*"],
   "main": "./dist/enhancedocs-search.umd.cjs",
   "module": "./dist/enhancedocs-search.js",
   "types": "./dist/types/index.d.ts",
