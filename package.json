@@ -1,7 +1,7 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "author": "EnhanceDocs",
   "repository": {
@@ -9,10 +9,15 @@
     "url": "git@github.com:enhancedocs/enhancedocs-search.git"
   },
   "type": "module",
+  "main": "./dist/enhancedocs-search.umd.cjs",
+  "module": "./dist/enhancedocs-search.js",
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "start": "start-storybook -p 6006",
-    "build": "tsc && vite build",
-    "build-docs": "build-storybook"
+    "build-docs": "build-storybook",
+    "build-tsc": "tsc --project tsconfig.build.json",
+    "build-vite": "vite build",
+    "build": "npm run build-tsc && npm run build-vite"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.2.0",

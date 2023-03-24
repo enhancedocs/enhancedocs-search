@@ -13,8 +13,12 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "declarationDir": "./dist/types",
+    "baseUrl": "lib",
   },
   "include": ["lib", ".storybook/stories", "stories"],
   "references": [{ "path": "./tsconfig.node.json" }]

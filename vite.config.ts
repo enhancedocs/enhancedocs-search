@@ -10,5 +10,6 @@ export default defineConfig({
       entry: './lib/index.ts',
     },
     emptyOutDir: false,
+    copyPublicDir: false
   },
 })
