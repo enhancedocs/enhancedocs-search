@@ -1,7 +1,8 @@
 {
   "name": "@enhancedocs/search",
-  "private": true,
   "version": "0.0.1",
+  "license": "MIT",
+  "author": "EnhanceDocs",
   "type": "module",
   "scripts": {
     "start": "start-storybook -p 6006",
