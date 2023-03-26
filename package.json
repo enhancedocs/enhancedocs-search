@@ -1,7 +1,7 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "author": "EnhanceDocs",
   "repository": {
@@ -9,7 +9,9 @@
     "url": "git@github.com:enhancedocs/enhancedocs-search.git"
   },
   "type": "module",
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "main": "./dist/enhancedocs-search.umd.cjs",
   "module": "./dist/enhancedocs-search.js",
   "types": "./dist/types/index.d.ts",
@@ -21,8 +23,12 @@
     "build": "npm run build-tsc && npm run build-vite"
   },
   "peerDependencies": {
-    "react": "^17.0.0 || ^18.2.0",
-    "react-dom": "^17.0.0 || ^18.2.0"
+    "react": "^17.x || ^18.x",
+    "react-dom": "^17.x || ^18.x"
+  },
+  "dependencies": {
+    "classnames": "^2.3.2",
+    "react-modal": "^3.16.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
@@ -36,6 +42,7 @@
     "@storybook/theming": "^6.5.16",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/react-modal": "^3.13.1",
     "@vitejs/plugin-react": "^3.1.0",
     "babel-loader": "^8.3.0",
     "react": "^18.2.0",

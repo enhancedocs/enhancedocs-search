@@ -1,5 +1,1 @@
-import Search from './search/Search';
-
-export {
-  Search,
-};
+export { default } from './Search';
