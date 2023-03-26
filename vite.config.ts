@@ -16,6 +16,14 @@ export default defineConfig({
       name: 'enhancedocs-search',
       entry: './lib/index.ts'
     },
+    rollupOptions: {
+      external: ['react'],
+      output: {
+        globals: {
+          react: 'React'
+        }
+      }
+    },
     emptyOutDir: false,
     copyPublicDir: false
   }
