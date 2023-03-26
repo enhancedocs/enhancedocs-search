@@ -1,7 +1,7 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "author": "EnhanceDocs",
   "repository": {
@@ -23,8 +23,8 @@
     "build": "npm run build-tsc && npm run build-vite"
   },
   "peerDependencies": {
-    "react": "^17.x || ^18.x",
-    "react-dom": "^17.x || ^18.x"
+    "react": "^17.0.2 || ^18.2.0",
+    "react-dom": "^17.0.2 || ^18.2.0"
   },
   "dependencies": {
     "classnames": "^2.3.2",
