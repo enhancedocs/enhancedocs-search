@@ -2,8 +2,6 @@ import Modal from 'react-modal';
 import SearchIcon from '../search-icon/SearchIcon';
 import classes from './SearchModal.module.css';
 
-const INSET = 40;
-
 export type SearchModalProps = {
   isOpen: boolean;
   onClose?: any;
@@ -12,19 +10,10 @@ export type SearchModalProps = {
 function SearchModal({ isOpen, onClose }: SearchModalProps) {
   return (
     <Modal
+      className={classes.EnhancedSearch_SearchModal_Content}
       style={{
         overlay: {
           backgroundColor: 'rgb(24, 27, 33, 0.3)'
-        },
-        content: {
-          inset: INSET,
-          maxWidth: 500,
-          height: 'fit-content',
-          minHeight: 200,
-          maxHeight: `calc(100vh - ${INSET * 2}px)`,
-          borderRadius: 16,
-          padding: 0,
-          margin: '0 auto'
         }
       }}
       isOpen={isOpen}
@@ -39,6 +28,21 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
           placeholder="Ask a question or search the docs..."
           autoFocus
         />
+      </div>
+      <div className={classes.EnhancedSearch_SearchModal_InnerBody}>
+        <div>
+          <span>No recent searches</span>
+        </div>
+        <div className={classes.EnhancedSearch_SearchModal_Footer}>
+          <span>
+            Search by
+          </span>
+          <img
+            className={classes.EnhancedSearch_SearchModal_Footer_Logo}
+            src="/logo-enhance-docs.png"
+            alt="EnhanceDocs"
+          />
+        </div>
       </div>
     </Modal>
   )

@@ -11,6 +11,25 @@
   opacity: 0;
 }
 
+.EnhancedSearch_SearchModal_Content {
+  position: absolute;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+  min-width: 500px;
+  max-width: 500px;
+  height: fit-content;
+  min-height: 200px;
+  max-height: calc(100vh - 100px);
+  background: white;
+  overflow: auto;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+  inset: 0;
+  padding: 0;
+}
+
 .EnhancedSearch_SearchModal_Input_Container {
   display: flex;
   align-items: center;
@@ -25,4 +44,22 @@
   border: 0;
   outline: 0;
   font-size: 16px;
+}
+
+.EnhancedSearch_SearchModal_InnerBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  padding: 16px;
+}
+
+.EnhancedSearch_SearchModal_Footer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.EnhancedSearch_SearchModal_Footer_Logo {
+  width: 120px;
 }
