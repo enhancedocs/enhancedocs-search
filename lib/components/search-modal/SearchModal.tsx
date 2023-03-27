@@ -8,11 +8,12 @@ import { DocsResponse, getDocs } from './/services/search';
 import classes from './SearchModal.module.css';
 
 type SearchModalProps = {
+  accessToken: string;
   isOpen: boolean;
   onClose?: any;
 }
 
-function SearchModal({ isOpen, onClose }: SearchModalProps) {
+function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
   const [search, setSearch] = useState('');
   const [docs, setDocs] = useState<DocsResponse>({ answer: '', sources: [] });
   const [loading, setLoading] = useState(false);
@@ -30,7 +31,7 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
       setSearch(value);
 
       if (value) {
-        const data = await getDocs(value);
+        const data = await getDocs(accessToken, value);
         setDocs(data);
       }
     } catch(error) {

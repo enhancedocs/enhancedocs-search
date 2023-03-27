@@ -7,13 +7,13 @@ import SearchModal from './components/search-modal/SearchModal';
 import classes from './Search.module.css';
 
 type SearchProps = {
-  API_KEY: string;
+  accessToken: string;
   placeholder?: string;
   size?: 'small' | 'middle' | 'large';
   shape?: 'square' | 'round';
 }
 
-function Search({ placeholder = 'EnhanceDocs Search', size = 'large', shape = 'round' }: SearchProps) {
+function Search({ accessToken, placeholder = 'EnhanceDocs Search', size = 'large', shape = 'round' }: SearchProps) {
   const [searchModal, setSearchModal] = useState(false);
 
   function openSearchModal() {
@@ -51,6 +51,7 @@ function Search({ placeholder = 'EnhanceDocs Search', size = 'large', shape = 'r
         </div>
       </button>
       <SearchModal
+        accessToken={accessToken}
         isOpen={searchModal}
         onClose={closeSearchModal}
       />
