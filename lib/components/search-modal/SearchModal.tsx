@@ -67,7 +67,14 @@ function SearchModal({ isOpen, onClose }: SearchModalProps) {
         <div>
           {
             loading
-              ? <span>Gathering resources...</span>
+              ? (
+                <>
+                  <span>Gathering resources...</span>
+                  <div className={classes.EnhancedSearch_SearchModal_LoadingContainer}>
+                    <div className={classes.EnhancedSearch_SearchModal_Loading} />
+                  </div>
+                </>
+              )
               : (
                 search
                   ? (
