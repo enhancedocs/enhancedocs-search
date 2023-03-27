@@ -1,8 +1,8 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.0.10",
-  "license": "MIT",
+  "version": "0.0.11",
+  "license": "Apache-2.0",
   "author": "EnhanceDocs",
   "repository": {
     "type": "git",
