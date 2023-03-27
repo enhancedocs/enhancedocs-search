@@ -35,7 +35,7 @@
   align-items: center;
   gap: 8px;
   padding: 16px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #DEE9FF;
   font-size: 24px;
 }
 
@@ -50,15 +50,22 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 200px;
   padding: 16px;
   background: #F7FAFF;
+}
+
+.EnhancedSearch_SearchModal_SearchContainer {
+  text-align: center;
+  padding: 32px;
 }
 
 .EnhancedSearch_SearchModal_Footer {
   display: flex;
   align-items: center;
   gap: 8px;
+  border-top: 1px solid #DEE9FF;
+  margin-top: 24px;
+  padding-top: 16px;
 }
 
 .EnhancedSearch_SearchModal_Footer_Logo {
