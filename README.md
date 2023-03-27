@@ -29,5 +29,5 @@ import EnhancedSearch from 'enhancedocs-search';
 
 import 'enhancedocs-search/dist/style.css';
 
-<EnhancedSearch API_KEY="abc123" {...props} />
+<EnhancedSearch accessToken="ed-abc123" {...props} />
 ```
