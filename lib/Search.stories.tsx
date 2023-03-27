@@ -9,7 +9,3 @@ export default {
 const Template: ComponentStory<typeof Search> = (args) => <Search {...args} />;
 
 export const Example = Template.bind({});
-Example.args = {
-  placeholder: 'EnhanceDocs Search',
-  size: 'large'
-};

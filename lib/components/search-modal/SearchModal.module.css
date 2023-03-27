@@ -52,14 +52,19 @@
   justify-content: space-between;
   min-height: 200px;
   padding: 16px;
+  background: #F7FAFF;
 }
 
 .EnhancedSearch_SearchModal_Footer {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .EnhancedSearch_SearchModal_Footer_Logo {
   width: 120px;
+}
+
+.EnhancedSearch_SearchModal_Footer_Link {
+  line-height: 1px;
 }

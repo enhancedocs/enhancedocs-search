@@ -1,26 +1,28 @@
 import { useState } from 'react';
 import classNames from 'classnames';
 import useKeyDown from './hooks/use-key-down';
+import CommandIcon from './components/command-icon/CommandIcon';
 import SearchIcon from './components/search-icon/SearchIcon';
 import SearchModal from './components/search-modal/SearchModal';
 import classes from './Search.module.css';
 
-export type SearchProps = {
-  placeholder: string;
+type SearchProps = {
+  API_KEY: string;
+  placeholder?: string;
   size?: 'small' | 'middle' | 'large';
   shape?: 'square' | 'round';
 }
 
-function Search({ placeholder, size = 'middle', shape = 'round' }: SearchProps) {
+function Search({ placeholder = 'EnhanceDocs Search', size = 'large', shape = 'round' }: SearchProps) {
   const [searchModal, setSearchModal] = useState(false);
 
-  const openSearchModal = () => {
+  function openSearchModal() {
     setSearchModal(true);
-  };
+  }
 
-  const closeSearchModal = () => {
+  function closeSearchModal() {
     setSearchModal(false);
-  };
+  }
 
   useKeyDown(openSearchModal);
 
@@ -39,6 +41,14 @@ function Search({ placeholder, size = 'middle', shape = 'round' }: SearchProps) 
       >
         <SearchIcon />
         {placeholder}
+        <div className={classes.EnhancedSearch_IconsContainer}>
+          <div className={classes.EnhancedSearch_IconContainer}>
+            <CommandIcon />
+          </div>
+          <div className={classes.EnhancedSearch_IconContainer}>
+            K
+          </div>
+        </div>
       </button>
       <SearchModal
         isOpen={searchModal}
