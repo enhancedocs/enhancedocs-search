@@ -2,14 +2,16 @@ import { ChangeEvent, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
-import SearchIcon from '../icons/SearchIcon';
+import DotStretching from '../dot-stretching/DotStretching';
+import CheckCircle from '../icons/CheckCircle';
 import LinkIcon from '../icons/LinkIcon';
+import SearchIcon from '../icons/SearchIcon';
 import Key from '../key/Key';
 import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
-import { DocsResponse, getDocs } from './/services/search';
+import { DocsResponse, getDocs, answerFeedback } from './/services/search';
 import classes from './SearchModal.module.css';
 
-const INITIAL_DOCS = { search: '', answer: '', sources: [] };
+const INITIAL_DOCS = { _id: '', search: '', answer: '', sources: [] };
 
 type SearchModalProps = {
   accessToken: string;
@@ -21,6 +23,8 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [docs, setDocs] = useState<DocsResponse>(INITIAL_DOCS);
   const [loading, setLoading] = useState(false);
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
+  const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
   function clearInput() {
     if (inputRef.current) {
@@ -32,6 +36,19 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
     onClose();
     clearInput();
     setDocs(INITIAL_DOCS);
+    setFeedbackSuccess(false);
+  }
+
+  async function handleFeedback({ answerId, usefulFeedback }: { answerId: string, usefulFeedback: boolean }) {
+    try {
+      setFeedbackLoading(true);
+      await answerFeedback({ accessToken, answerId, usefulFeedback });
+      setFeedbackSuccess(true);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setFeedbackLoading(false);
+    }
   }
 
   async function handleSearch(event: ChangeEvent<HTMLInputElement>) {
@@ -41,9 +58,10 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
       const { value } = event.target;
 
       if (value) {
-        const data = await getDocs(accessToken, value);
+        const data = await getDocs({ accessToken, search: value });
         setDocs({
           search: value,
+          _id: data._id,
           answer: data.answer,
           sources: data.sources
         });
@@ -52,11 +70,12 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
     } catch(error) {
       console.error(error);
     } finally {
+      setFeedbackSuccess(false);
       setLoading(false);
     }
   }
 
-  const debouncedSearch = debounce(handleSearch, 300);
+  const debouncedSearch = debounce(handleSearch, 500);
 
   return (
     <Modal
@@ -110,6 +129,44 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                     >
                       {docs.answer}
                     </ReactMarkdown>
+
+                    {
+                      feedbackLoading
+                        ? (
+                          <div className={classes.EnhancedSearch_SearchModal_Feedback}>
+                            <DotStretching />
+                          </div>
+                        ) : (
+                          <div className={classes.EnhancedSearch_SearchModal_Feedback}>
+                            {
+                              feedbackSuccess
+                                ? (
+                                  <div className={classes.EnhancedSearch_SearchModal_SuccessFeedback}>
+                                    <CheckCircle />
+                                    <span>Thanks for submitting your feedback!</span>
+                                  </div>
+                                )
+                                : (
+                                  <>
+                                    <p className={classes.EnhancedSearch_SearchModal_FeedbackTitle}>Was this response useful?</p>
+                                    <button
+                                      className={classes.EnhancedSearch_SearchModal_FeedbackButton}
+                                      onClick={() => handleFeedback({ answerId: docs._id, usefulFeedback: true })}
+                                    >
+                                      Yes
+                                    </button>
+                                    <button
+                                      className={classes.EnhancedSearch_SearchModal_FeedbackButton}
+                                      onClick={() => handleFeedback({ answerId: docs._id, usefulFeedback: false })}
+                                    >
+                                      No
+                                    </button>
+                                  </>
+                                )
+                            }
+                          </div>
+                        )
+                    }
                     <div className={classes.EnhancedSearch_SearchModal_ResultSources}>
                       <p className={classes.EnhancedSearch_Search_modal_ResultSourcesTitle}>
                         Summary generated from the following sources:
