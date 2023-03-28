@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import Modal from 'react-modal';
-import ReactMarkdown from 'react-markdown';
+// import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
 import DotStretching from '../dot-stretching/DotStretching';
 import CheckCircle from '../icons/CheckCircle';
@@ -106,7 +106,8 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                 ? (
                   <div>
                     <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{docs.search}</h2>
-                    <ReactMarkdown
+                    <p>{docs.answer}</p>
+                    {/* <ReactMarkdown
                       className={classes.EnhancedSearch_SearchModal_ResultAnswer}
                       components={{
                         code(props) {
@@ -118,7 +119,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                       }}
                     >
                       {docs.answer}
-                    </ReactMarkdown>
+                    </ReactMarkdown> */}
 
                     {
                       feedbackLoading
