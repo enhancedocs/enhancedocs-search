@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import classNames from 'classnames';
+import { classNames } from './helpers/styles';
 import useKeyDown from './hooks/use-key-down';
-import CommandIcon from './components/command-icon/CommandIcon';
-import SearchIcon from './components/search-icon/SearchIcon';
+import CommandIcon from './components/icons/CommandIcon';
+import SearchIcon from './components/icons/SearchIcon';
+import Key from './components/key/Key';
 import SearchModal from './components/search-modal/SearchModal';
 import classes from './Search.module.css';
 
@@ -42,12 +43,8 @@ function Search({ accessToken, placeholder = 'EnhanceDocs Search', size = 'large
         <SearchIcon />
         {placeholder}
         <div className={classes.EnhancedSearch_IconsContainer}>
-          <div className={classes.EnhancedSearch_IconContainer}>
-            <CommandIcon />
-          </div>
-          <div className={classes.EnhancedSearch_IconContainer}>
-            K
-          </div>
+          <Key><CommandIcon /></Key>
+          <Key>K</Key>
         </div>
       </button>
       <SearchModal

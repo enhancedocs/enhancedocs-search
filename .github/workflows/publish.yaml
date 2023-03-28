@@ -20,6 +20,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
 
+      - name: 🔍 Audit
+        run: npm audit --production
+
       - name: 📦 Build
         run: |
           npm ci

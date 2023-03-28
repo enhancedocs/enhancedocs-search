@@ -2,11 +2,14 @@ import { ChangeEvent, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
-import SearchIcon from '../search-icon/SearchIcon';
-import LinkIcon from '../link-icon/LinkIcon';
+import SearchIcon from '../icons/SearchIcon';
+import LinkIcon from '../icons/LinkIcon';
+import Key from '../key/Key';
 import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
 import { DocsResponse, getDocs } from './/services/search';
 import classes from './SearchModal.module.css';
+
+const INITIAL_DOCS = { search: '', answer: '', sources: [] };
 
 type SearchModalProps = {
   accessToken: string;
@@ -16,7 +19,7 @@ type SearchModalProps = {
 
 function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const [docs, setDocs] = useState<DocsResponse>({ search: '', answer: '', sources: [] });
+  const [docs, setDocs] = useState<DocsResponse>(INITIAL_DOCS);
   const [loading, setLoading] = useState(false);
 
   function clearInput() {
@@ -26,8 +29,9 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
   }
 
   function handleClose() {
-    clearInput();
     onClose();
+    clearInput();
+    setDocs(INITIAL_DOCS);
   }
 
   async function handleSearch(event: ChangeEvent<HTMLInputElement>) {
@@ -89,7 +93,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
               </div>
             )
             : (
-              docs.answer
+              docs.search
                 ? (
                   <div>
                     <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{docs.search}</h2>
@@ -134,17 +138,25 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
             )
         }
         <div className={classes.EnhancedSearch_SearchModal_Footer}>
-          <span>
-            Search by
-          </span>
-          <a
-            className={classes.EnhancedSearch_SearchModal_FooterLink}
-            href="http://enhancedocs.com/"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <EnhanceDocsLogo className={classes.EnhancedSearch_SearchModal_FooterLogo} />
-          </a>
+          <div>
+            <div className={classes.EnhancedSearch_SearchModal_FooterKey}>
+              <Key>esc</Key>
+              to close
+            </div>
+          </div>
+          <div className={classes.EnhancedSearch_SearchModal_FooterLogoContainer}>
+            <span>
+              Search by
+            </span>
+            <a
+              className={classes.EnhancedSearch_SearchModal_FooterLink}
+              href="http://enhancedocs.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <EnhanceDocsLogo className={classes.EnhancedSearch_SearchModal_FooterLogo} />
+            </a>
+          </div>
         </div>
       </div>
     </Modal>

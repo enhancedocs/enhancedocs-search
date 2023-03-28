@@ -62,10 +62,23 @@
 .EnhancedSearch_SearchModal_Footer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
   border-top: 1px solid #DEE9FF;
   margin-top: 24px;
   padding-top: 16px;
+}
+
+.EnhancedSearch_SearchModal_FooterKey {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #3D4554;
+}
+
+.EnhancedSearch_SearchModal_FooterLogoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .EnhancedSearch_SearchModal_FooterLogo {
