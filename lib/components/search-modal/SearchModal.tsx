@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
 import SearchIcon from '../search-icon/SearchIcon';
+import LinkIcon from '../link-icon/LinkIcon';
 import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
 import { DocsResponse, getDocs } from './/services/search';
 import classes from './SearchModal.module.css';
@@ -56,7 +57,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
       contentLabel="Search"
       ariaHideApp={false}
     >
-      <div className={classes.EnhancedSearch_SearchModal_Input_Container}>
+      <div className={classes.EnhancedSearch_SearchModal_InputContainer}>
         <SearchIcon />
         <input
           className={classes.EnhancedSearch_SearchModal_Input}
@@ -79,14 +80,38 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
             : (
               search
                 ? (
-                  <div className={classes.EnhancedSearch_SearchModal_SearchResults}>
-                    <h2>{search}</h2>
-                    <ReactMarkdown>{docs.answer}</ReactMarkdown>
-                    <ul>
-                      {docs.sources.map((source, index) => {
-                        return <li key={`source-${index}`}>{source}</li>
-                      })}
-                    </ul>
+                  <div>
+                    <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{search}</h2>
+                    <ReactMarkdown
+                      className={classes.EnhancedSearch_SearchModal_ResultAnswer}
+                      components={{
+                        code(props) {
+                          return <code className={classes.EnhancedSearch_SearchModal_ResultAnswer_Code} {...props} />
+                        },
+                        a(props) {
+                          return <a className={classes.EnhancedSearch_SearchModal_ResultAnswer_Link} {...props} />;
+                        }
+                      }}
+                    >
+                      {docs.answer}
+                    </ReactMarkdown>
+                    <div className={classes.EnhancedSearch_SearchModal_ResultSources}>
+                      <p>Summary generated from the following sources:</p>
+                      <div>
+                        {docs.sources.map((source, index) => {
+                          return (
+                            <a
+                              key={`source-${index}`}
+                              className={classes.EnhancedSearch_SearchModal_ResultSourceItem}
+                              href={source}
+                            >
+                              <LinkIcon />
+                              {source}
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                 ) : (
                   <div className={classes.EnhancedSearch_SearchModal_SearchContainer}>
@@ -100,12 +125,12 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
             Search by
           </span>
           <a
-            className={classes.EnhancedSearch_SearchModal_Footer_Link}
+            className={classes.EnhancedSearch_SearchModal_FooterLink}
             href="http://enhancedocs.com/"
             target="_blank"
             rel="noreferrer noopener"
           >
-            <EnhanceDocsLogo className={classes.EnhancedSearch_SearchModal_Footer_Logo} />
+            <EnhanceDocsLogo className={classes.EnhancedSearch_SearchModal_FooterLogo} />
           </a>
         </div>
       </div>
