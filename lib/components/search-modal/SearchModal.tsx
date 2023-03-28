@@ -68,6 +68,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
 
   const debouncedSearchDocs = debounce(handleSearchDocs, 500);
 
+  console.log('SearchModal window', window);
   return (
     <Modal
       className={classes.EnhancedSearch_SearchModal_Content}
@@ -106,19 +107,23 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                 ? (
                   <div>
                     <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{docs.search}</h2>
-                    <ReactMarkdown
-                      className={classes.EnhancedSearch_SearchModal_ResultAnswer}
-                      components={{
-                        code(props) {
-                          return <code className={classes.EnhancedSearch_SearchModal_ResultAnswerCode} {...props} />;
-                        },
-                        a(props) {
-                          return <a className={classes.EnhancedSearch_SearchModal_ResultAnswerLink} {...props} />;
-                        }
-                      }}
-                    >
-                      {docs.answer}
-                    </ReactMarkdown>
+                    {
+                      typeof window !== 'undefined' && (
+                        <ReactMarkdown
+                          className={classes.EnhancedSearch_SearchModal_ResultAnswer}
+                          components={{
+                            code(props) {
+                              return <code className={classes.EnhancedSearch_SearchModal_ResultAnswerCode} {...props} />;
+                            },
+                            a(props) {
+                              return <a className={classes.EnhancedSearch_SearchModal_ResultAnswerLink} {...props} />;
+                            }
+                          }}
+                        >
+                          {docs.answer}
+                        </ReactMarkdown>
+                      )
+                    }
 
                     {
                       feedbackLoading
