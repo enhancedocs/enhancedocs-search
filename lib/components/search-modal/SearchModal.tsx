@@ -13,6 +13,11 @@ import classes from './SearchModal.module.css';
 
 const INITIAL_DOCS = { _id: '', search: '', answer: '', sources: [] };
 
+/**
+ * Utility to detect if you're on the server, or in the browser.
+ */
+const isBrowser = typeof window !== 'undefined';
+
 type SearchModalProps = {
   accessToken: string;
   isOpen: boolean;
@@ -77,7 +82,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
 
   const debouncedSearch = debounce(handleSearch, 500);
 
-  return (
+  return isBrowser && (
     <Modal
       className={classes.EnhancedSearch_SearchModal_Content}
       style={{
@@ -167,6 +172,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                           </div>
                         )
                     }
+
                     <div className={classes.EnhancedSearch_SearchModal_ResultSources}>
                       <p className={classes.EnhancedSearch_Search_modal_ResultSourcesTitle}>
                         Summary generated from the following sources:
