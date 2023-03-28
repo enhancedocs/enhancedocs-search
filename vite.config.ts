@@ -26,8 +26,5 @@ export default defineConfig({
     },
     emptyOutDir: false,
     copyPublicDir: false
-  },
-  ssr: {
-    noExternal: ['react-markdown']
   }
 })
