@@ -1,6 +1,5 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, lazy, Suspense, useState } from 'react';
 import Modal from 'react-modal';
-// import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
 import DotStretching from '../dot-stretching/DotStretching';
 import CheckCircle from '../icons/CheckCircle';
@@ -10,6 +9,8 @@ import Key from '../key/Key';
 import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
 import { DocsResponse, getDocs, answerFeedback } from './services/search';
 import classes from './SearchModal.module.css';
+
+const ReactMarkdown = lazy(() => import('react-markdown'));
 
 const INITIAL_DOCS = { _id: '', search: '', answer: '', sources: [] };
 
@@ -106,20 +107,21 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                 ? (
                   <div>
                     <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{docs.search}</h2>
-                    <p>{docs.answer}</p>
-                    {/* <ReactMarkdown
-                      className={classes.EnhancedSearch_SearchModal_ResultAnswer}
-                      components={{
-                        code(props) {
-                          return <code className={classes.EnhancedSearch_SearchModal_ResultAnswerCode} {...props} />;
-                        },
-                        a(props) {
-                          return <a className={classes.EnhancedSearch_SearchModal_ResultAnswerLink} {...props} />;
-                        }
-                      }}
-                    >
-                      {docs.answer}
-                    </ReactMarkdown> */}
+                    <Suspense fallback={<></>}>
+                      <ReactMarkdown
+                        className={classes.EnhancedSearch_SearchModal_ResultAnswer}
+                        components={{
+                          code(props) {
+                            return <code className={classes.EnhancedSearch_SearchModal_ResultAnswerCode} {...props} />;
+                          },
+                          a(props) {
+                            return <a className={classes.EnhancedSearch_SearchModal_ResultAnswerLink} {...props} />;
+                          }
+                        }}
+                        >
+                        {docs.answer}
+                      </ReactMarkdown>
+                    </Suspense>
 
                     {
                       feedbackLoading
