@@ -20,6 +20,10 @@ type SearchModalProps = {
 }
 
 function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [docs, setDocs] = useState<DocsResponse>(INITIAL_DOCS);
   const [loading, setLoading] = useState(false);
