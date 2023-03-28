@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
@@ -15,12 +15,18 @@ type SearchModalProps = {
 }
 
 function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
-  const [search, setSearch] = useState('');
-  const [docs, setDocs] = useState<DocsResponse>({ answer: '', sources: [] });
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [docs, setDocs] = useState<DocsResponse>({ search: '', answer: '', sources: [] });
   const [loading, setLoading] = useState(false);
 
+  function clearInput() {
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
+  }
+
   function handleClose() {
-    setSearch('');
+    clearInput();
     onClose();
   }
 
@@ -29,11 +35,15 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
       setLoading(true);
 
       const { value } = event.target;
-      setSearch(value);
 
       if (value) {
         const data = await getDocs(accessToken, value);
-        setDocs(data);
+        setDocs({
+          search: value,
+          answer: data.answer,
+          sources: data.sources
+        });
+        clearInput();
       }
     } catch(error) {
       console.error(error);
@@ -61,6 +71,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
         <SearchIcon />
         <input
           className={classes.EnhancedSearch_SearchModal_Input}
+          ref={inputRef}
           placeholder="Ask a question or search the docs..."
           onChange={debouncedSearch}
           autoFocus
@@ -78,10 +89,10 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
               </div>
             )
             : (
-              search
+              docs.answer
                 ? (
                   <div>
-                    <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{search}</h2>
+                    <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{docs.search}</h2>
                     <ReactMarkdown
                       className={classes.EnhancedSearch_SearchModal_ResultAnswer}
                       components={{
@@ -96,7 +107,9 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                       {docs.answer}
                     </ReactMarkdown>
                     <div className={classes.EnhancedSearch_SearchModal_ResultSources}>
-                      <p>Summary generated from the following sources:</p>
+                      <p className={classes.EnhancedSearch_Search_modal_ResultSourcesTitle}>
+                        Summary generated from the following sources:
+                      </p>
                       <div>
                         {docs.sources.map((source, index) => {
                           return (

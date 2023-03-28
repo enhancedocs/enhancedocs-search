@@ -20,7 +20,7 @@
   max-width: 550px;
   height: fit-content;
   min-height: 200px;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 160px);
   background: white;
   overflow: auto;
   border-radius: 16px;
@@ -132,8 +132,13 @@
 .EnhancedSearch_SearchModal_ResultSources {
   border-top: 1px solid #DEE9FF;
   margin-top: 32px;
-  padding-top: 16px;
+  padding-top: 32px;
   animation: fadeInUp .5s ease-in;
+}
+
+.EnhancedSearch_Search_modal_ResultSourcesTitle {
+  margin: 0;
+  margin-bottom: 16px;
 }
 
 .EnhancedSearch_SearchModal_ResultSourceItem {
