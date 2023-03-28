@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import Modal from 'react-modal';
 import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
@@ -20,25 +20,13 @@ type SearchModalProps = {
 }
 
 function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
-  if (typeof window === 'undefined') {
-    return null;
-  }
-
-  const inputRef = useRef<HTMLInputElement>(null);
   const [docs, setDocs] = useState<DocsResponse>(INITIAL_DOCS);
   const [loading, setLoading] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false);
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
-  function clearInput() {
-    if (inputRef.current) {
-      inputRef.current.value = '';
-    }
-  }
-
   function handleClose() {
     onClose();
-    clearInput();
     setDocs(INITIAL_DOCS);
     setFeedbackSuccess(false);
   }
@@ -55,7 +43,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
     }
   }
 
-  async function handleSearch(event: ChangeEvent<HTMLInputElement>) {
+  async function handleSearchDocs(event: ChangeEvent<HTMLInputElement>) {
     try {
       setLoading(true);
 
@@ -69,7 +57,6 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
           answer: data.answer,
           sources: data.sources
         });
-        clearInput();
       }
     } catch(error) {
       console.error(error);
@@ -79,7 +66,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
     }
   }
 
-  const debouncedSearch = debounce(handleSearch, 500);
+  const debouncedSearchDocs = debounce(handleSearchDocs, 500);
 
   return (
     <Modal
@@ -98,9 +85,8 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
         <SearchIcon />
         <input
           className={classes.EnhancedSearch_SearchModal_Input}
-          ref={inputRef}
           placeholder="Ask a question or search the docs..."
-          onChange={debouncedSearch}
+          onChange={debouncedSearchDocs}
           autoFocus
         />
       </div>
