@@ -13,11 +13,6 @@ import classes from './SearchModal.module.css';
 
 const INITIAL_DOCS = { _id: '', search: '', answer: '', sources: [] };
 
-/**
- * Utility to detect if you're on the server, or in the browser.
- */
-const isBrowser = typeof window !== 'undefined';
-
 type SearchModalProps = {
   accessToken: string;
   isOpen: boolean;
@@ -82,7 +77,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
 
   const debouncedSearch = debounce(handleSearch, 500);
 
-  return isBrowser && (
+  return (
     <Modal
       className={classes.EnhancedSearch_SearchModal_Content}
       style={{
