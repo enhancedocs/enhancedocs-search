@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import Modal from 'react-modal';
-// import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
 import DotStretching from '../dot-stretching/DotStretching';
 import CheckCircle from '../icons/CheckCircle';
@@ -8,7 +8,7 @@ import LinkIcon from '../icons/LinkIcon';
 import SearchIcon from '../icons/SearchIcon';
 import Key from '../key/Key';
 import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
-import { DocsResponse, getDocs, answerFeedback } from './/services/search';
+import { DocsResponse, getDocs, answerFeedback } from './services/search';
 import classes from './SearchModal.module.css';
 
 const INITIAL_DOCS = { _id: '', search: '', answer: '', sources: [] };
@@ -106,10 +106,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                 ? (
                   <div>
                     <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{docs.search}</h2>
-                    <p>
-                      {docs.answer}
-                    </p>
-                    {/* <ReactMarkdown
+                    <ReactMarkdown
                       className={classes.EnhancedSearch_SearchModal_ResultAnswer}
                       components={{
                         code(props) {
@@ -121,7 +118,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                       }}
                     >
                       {docs.answer}
-                    </ReactMarkdown> */}
+                    </ReactMarkdown>
 
                     {
                       feedbackLoading
