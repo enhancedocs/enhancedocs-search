@@ -97,10 +97,10 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                       className={classes.EnhancedSearch_SearchModal_ResultAnswer}
                       components={{
                         code(props) {
-                          return <code className={classes.EnhancedSearch_SearchModal_ResultAnswer_Code} {...props} />
+                          return <code className={classes.EnhancedSearch_SearchModal_ResultAnswerCode} {...props} />
                         },
                         a(props) {
-                          return <a className={classes.EnhancedSearch_SearchModal_ResultAnswer_Link} {...props} />;
+                          return <a className={classes.EnhancedSearch_SearchModal_ResultAnswerLink} {...props} />;
                         }
                       }}
                     >
