@@ -1,7 +1,6 @@
 import { ChangeEvent, useState } from 'react';
 import Modal from 'react-modal';
-import { remark } from 'remark';
-import remarkHtml from 'remark-html';
+import ReactMarkdown from 'react-markdown';
 import debounce from 'lodash.debounce';
 import DotStretching from '../dot-stretching/DotStretching';
 import CheckCircle from '../icons/CheckCircle';
@@ -52,17 +51,10 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
 
       if (value) {
         const data = await getDocs({ accessToken, search: value });
-
-        // Parse Markdown to HTML.
-        const processedAnswer = await remark()
-          .use(remarkHtml)
-          .process(data.answer);
-        const answerHtml = processedAnswer.toString();
-
         setDocs({
           search: value,
           _id: data._id,
-          answer: answerHtml,
+          answer: data.answer,
           sources: data.sources
         });
       }
@@ -114,9 +106,19 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                 ? (
                   <div>
                     <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{docs.search}</h2>
-                    <div className={classes.EnhancedSearch_SearchModal_ResultAnswer}>
-                      <div dangerouslySetInnerHTML={{ __html: docs.answer }} />
-                    </div>
+                    <ReactMarkdown
+                      className={classes.EnhancedSearch_SearchModal_ResultAnswer}
+                      components={{
+                        code(props) {
+                          return <code className={classes.EnhancedSearch_SearchModal_ResultAnswerCode} {...props} />;
+                        },
+                        a(props) {
+                          return <a className={classes.EnhancedSearch_SearchModal_ResultAnswerLink} {...props} />;
+                        }
+                      }}
+                    >
+                      {docs.answer}
+                    </ReactMarkdown>
 
                     {
                       feedbackLoading

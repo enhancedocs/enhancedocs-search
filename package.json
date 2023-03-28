@@ -1,7 +1,7 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "license": "Apache-2.0",
   "author": "EnhanceDocs",
   "repository": {
@@ -34,9 +34,8 @@
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8",
-    "react-modal": "^3.16.1",
-    "remark": "^14.0.2",
-    "remark-html": "^15.0.2"
+    "react-markdown": "^8.0.6",
+    "react-modal": "^3.16.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",
