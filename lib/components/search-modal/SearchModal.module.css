@@ -16,7 +16,7 @@
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%);
-  min-width: 550px;
+  min-width: calc(100% - 16px);
   max-width: 550px;
   height: fit-content;
   min-height: 200px;
@@ -28,6 +28,12 @@
   outline: none;
   inset: 0;
   padding: 0;
+}
+
+@media (min-width: 600px) {
+  .EnhancedSearch_SearchModal_Content {
+    min-width: 550px;
+  }
 }
 
 .EnhancedSearch_SearchModal_InputContainer {
