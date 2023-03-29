@@ -1,10 +1,10 @@
-import { ChangeEvent, lazy, Suspense, useState } from 'react';
+import { FormEvent, lazy, Suspense, useState } from 'react';
 import Modal from 'react-modal';
-import debounce from 'lodash.debounce';
 import DotStretching from '../dot-stretching/DotStretching';
 import CheckCircle from '../icons/CheckCircle';
 import LinkIcon from '../icons/LinkIcon';
 import SearchIcon from '../icons/SearchIcon';
+import SubmitIcon from '../icons/SubmitIcon';
 import Key from '../key/Key';
 import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
 import { DocsResponse, getDocs, answerFeedback } from './services/search';
@@ -44,20 +44,26 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
     }
   }
 
-  async function handleSearchDocs(event: ChangeEvent<HTMLInputElement>) {
+  async function handleSearchDocs(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
     try {
       setLoading(true);
 
-      const { value } = event.target;
+      const data = new FormData(event.target as HTMLFormElement);
+      const formValues = Object.fromEntries(data.entries());
+      const search = formValues.search as string;
 
-      if (value) {
-        const data = await getDocs({ accessToken, search: value });
+      if (search) {
+        const data = await getDocs({ accessToken, search });
         setDocs({
-          search: value,
+          search,
           _id: data._id,
           answer: data.answer,
           sources: data.sources
         });
+      } else {
+        setDocs(INITIAL_DOCS);
       }
     } catch(error) {
       console.error(error);
@@ -67,30 +73,33 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
     }
   }
 
-  const debouncedSearchDocs = debounce(handleSearchDocs, 500);
-
   return (
     <Modal
       className={classes.EnhancedSearch_SearchModal_Content}
-      style={{
-        overlay: {
-          backgroundColor: 'rgb(24, 27, 33, 0.3)'
-        }
-      }}
+      style={{ overlay: { backgroundColor: 'rgb(24, 27, 33, 0.3)' } }}
       isOpen={isOpen}
       onRequestClose={handleClose}
       contentLabel="Search"
       ariaHideApp={false}
     >
-      <div className={classes.EnhancedSearch_SearchModal_InputContainer}>
+      <form
+        className={classes.EnhancedSearch_SearchModal_InputContainer}
+        name="search-form"
+        onSubmit={handleSearchDocs}
+      >
         <SearchIcon />
         <input
           className={classes.EnhancedSearch_SearchModal_Input}
+          name="search"
           placeholder="Ask a question or search the docs..."
-          onChange={debouncedSearchDocs}
           autoFocus
         />
-      </div>
+        <Key>
+          <button className={classes.EnhancedSearch_SearchModal_SubmitButton} type="submit">
+            <SubmitIcon />
+          </button>
+        </Key>
+      </form>
       <div className={classes.EnhancedSearch_SearchModal_InnerBody}>
         {
           loading
