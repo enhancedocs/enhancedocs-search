@@ -21,28 +21,28 @@
 }
 
 /* size */
-.EnhancedSearch_small {
+.EnhancedSearch__small {
   font-size: 14px;
   padding: 4px 8px;
 }
-.EnhancedSearch_middle {
+.EnhancedSearch__middle {
   font-size: 16px;
   padding: 8px 12px;
 }
-.EnhancedSearch_large {
+.EnhancedSearch__large {
   font-size: 16px;
   padding: 12px 16px;
 }
 
 /* shape */
-.EnhancedSearch_square {
+.EnhancedSearch__square {
   border-radius: 4px;
 }
-.EnhancedSearch_round {
+.EnhancedSearch__round {
   border-radius: 40px;
 }
 
-.EnhancedSearch_IconsContainer {
+.EnhancedSearch__IconsContainer {
   display: flex;
   align-items: center;
   gap: 4px;

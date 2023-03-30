@@ -4,7 +4,7 @@
 [![Downloads](https://img.shields.io/npm/dm/enhancedocs-search.svg)](https://www.npmjs.com/package/enhancedocs-search)
 [![License: MIT](https://img.shields.io/badge/license-Apache--2.0-yellow)](https://www.apache.org/licenses/LICENSE-2.0)
  [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/enhancedocs.svg?style=social&label=Follow%20%40EnhanceDocs)](https://twitter.com/langchainai)
-[![](https://dcbadge.vercel.app/api/server/RJCppmZGrk?compact=true&style=flat)](https://discord.gg/RJCppmZGrk)
+[![](https://dcbadge.vercel.app/api/server/RJCppmZGrk?compact=true&style=flat)](https://discord.com/invite/AUDa3KZavw)
 
 ## 📦 Installing
 
@@ -24,7 +24,7 @@ yarn add enhancedocs-search
 
 ## 🚀 Usage
 
-First you will need to create a public key (`pk_`) in our [Discord channel](https://discord.gg/RJCppmZGrk).
+First you will need to create a public key (`pk_`) in our [Discord channel](https://discord.com/invite/AUDa3KZavw).
 Then you can install the package and start using it 🎉🎉
 
 ```js

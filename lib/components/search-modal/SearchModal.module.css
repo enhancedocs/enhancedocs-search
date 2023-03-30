@@ -11,32 +11,38 @@
   opacity: 0;
 }
 
-.EnhancedSearch_SearchModal_Content {
+.EnhancedSearch__SearchModal__Content {
   position: absolute;
   top: 50% !important;
   left: 50% !important;
   transform: translate(-50%, -50%);
-  min-width: calc(100% - 16px);
-  max-width: 550px;
-  height: fit-content;
-  min-height: 200px;
-  max-height: calc(100vh - 160px);
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
   background: white;
   overflow: auto;
-  border-radius: 16px;
   border: none;
   outline: none;
   inset: 0;
   padding: 0;
+  z-index: 999;
+
 }
 
 @media (min-width: 600px) {
-  .EnhancedSearch_SearchModal_Content {
+  .EnhancedSearch__SearchModal__Content {
     min-width: 550px;
+    max-width: 550px;
+    height: fit-content;
+    min-height: 200px;
+    max-height: calc(100vh - 160px);
+    border-radius: 16px;
   }
 }
 
-.EnhancedSearch_SearchModal_InputContainer {
+.EnhancedSearch__SearchModal__InputContainer {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -45,19 +51,25 @@
   font-size: 24px;
 }
 
-.EnhancedSearch_SearchModal_Input {
+.EnhancedSearch__SearchModal__Input {
   width: 100%;
   border: 0;
   outline: 0;
   font-size: 16px;
 }
 
-.EnhancedSearch_SearchModal_SubmitButton {
+.EnhancedSearch__SearchModal__SubmitButtonKey {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+}
+
+.EnhancedSearch__SearchModal__SubmitButton {
   all: unset;
   cursor: pointer;
   color: inherit;
-  width: 24px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,11 +77,11 @@
   border-radius: 4px;
 }
 
-.EnhancedSearch_SearchModal_SubmitButton:hover {
+.EnhancedSearch__SearchModal__SubmitButton:hover {
   background: #DEE9FF;
 }
 
-.EnhancedSearch_SearchModal_InnerBody {
+.EnhancedSearch__SearchModal__InnerBody {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -77,12 +89,12 @@
   background: #F7FAFF;
 }
 
-.EnhancedSearch_SearchModal_SearchContainer {
+.EnhancedSearch__SearchModal__SearchContainer {
   text-align: center;
   padding: 32px;
 }
 
-.EnhancedSearch_SearchModal_Footer {
+.EnhancedSearch__SearchModal__Footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,34 +103,34 @@
   padding-top: 16px;
 }
 
-.EnhancedSearch_SearchModal_FooterKey {
+.EnhancedSearch__SearchModal__FooterKey {
   display: flex;
   align-items: center;
   gap: 6px;
   color: #3D4554;
 }
 
-.EnhancedSearch_SearchModal_FooterLogoContainer {
+.EnhancedSearch__SearchModal__FooterLogoContainer {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.EnhancedSearch_SearchModal_FooterLogo {
+.EnhancedSearch__SearchModal__FooterLogo {
   width: 120px;
 }
 
-.EnhancedSearch_SearchModal_FooterLink {
+.EnhancedSearch__SearchModal__FooterLink {
   line-height: 1px;
 }
 
-.EnhancedSearch_SearchModal_LoadingContainer {
+.EnhancedSearch__SearchModal__LoadingContainer {
   position: relative;
   width: 100%;
   box-sizing: border-box;
 }
 
-.EnhancedSearch_SearchModal_Loading {
+.EnhancedSearch__SearchModal__Loading {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -129,7 +141,7 @@
   overflow: hidden;
 }
 
-.EnhancedSearch_SearchModal_Loading:after {
+.EnhancedSearch__SearchModal__Loading:after {
   content: '';
   position: absolute;
   left: 0;
@@ -140,15 +152,15 @@
   animation: load 1s infinite;
 }
 
-.EnhancedSearch_SearchModal_ResultQuery {
+.EnhancedSearch__SearchModal__ResultQuery {
   animation: fadeInDown .5s ease-in;
 }
 
-.EnhancedSearch_SearchModal_ResultAnswer {
+.EnhancedSearch__SearchModal__ResultAnswer {
   animation: fadeInDown .6s ease-in;
 }
 
-.EnhancedSearch_SearchModal_ResultAnswerCode {
+.EnhancedSearch__SearchModal__ResultAnswerCode {
   display: block;
   background: #DEE9FF;
   padding: 8px;
@@ -156,36 +168,36 @@
   overflow-x: scroll;
 }
 
-.EnhancedSearch_SearchModal_ResultAnswerLink {
+.EnhancedSearch__SearchModal__ResultAnswerLink {
   text-decoration: auto;
   color: #3663eb;
 }
 
-.EnhancedSearch_SearchModal_ResultAnswerLink:hover {
+.EnhancedSearch__SearchModal__ResultAnswerLink:hover {
   text-decoration: underline;
 }
 
-.EnhancedSearch_SearchModal_Feedback {
+.EnhancedSearch__SearchModal__Feedback {
   margin-top: 32px;
   animation: fadeInDown .7s ease-in;
 }
 
-.EnhancedSearch_SearchModal_SuccessFeedback {
+.EnhancedSearch__SearchModal__SuccessFeedback {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.EnhancedSearch_SearchModal_SuccessFeedback svg {
+.EnhancedSearch__SearchModal__SuccessFeedback svg {
   color: #4BBB69;
 }
 
-.EnhancedSearch_SearchModal_FeedbackTitle {
+.EnhancedSearch__SearchModal__FeedbackTitle {
   margin: 0;
   margin-bottom: 8px;
 }
 
-.EnhancedSearch_SearchModal_FeedbackButton {
+.EnhancedSearch__SearchModal__FeedbackButton {
   border: none;
   outline: none;
   border-radius: 16px;
@@ -196,24 +208,24 @@
   box-shadow: inset 0 -1px 0 0 rgb(190 206 237), inset 0 0 1px 1px #fff, 0 1px 2px 0px rgb(190 206 237 / 90%);
 }
 
-.EnhancedSearch_SearchModal_FeedbackButton:hover {
+.EnhancedSearch__SearchModal__FeedbackButton:hover {
   background: #DEE9FF;
   box-shadow: none;
 }
 
-.EnhancedSearch_SearchModal_ResultSources {
+.EnhancedSearch__SearchModal__ResultSources {
   border-top: 1px solid #DEE9FF;
   margin-top: 32px;
   padding-top: 32px;
   animation: fadeInDown .8s ease-in;
 }
 
-.EnhancedSearch_Search_modal_ResultSourcesTitle {
+.EnhancedSearch__SearchModal__ResultSourcesTitle {
   margin: 0;
   margin-bottom: 16px;
 }
 
-.EnhancedSearch_SearchModal_ResultSourceItem {
+.EnhancedSearch__SearchModal__ResultSourceItem {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -227,7 +239,7 @@
   box-shadow: inset 0 -1px 0 0 rgb(190 206 237), inset 0 0 1px 1px #fff, 0 1px 2px 0px rgb(190 206 237 / 90%);
 }
 
-.EnhancedSearch_SearchModal_ResultSourceItem:hover {
+.EnhancedSearch__SearchModal__ResultSourceItem:hover {
   text-decoration: underline;
 }
 

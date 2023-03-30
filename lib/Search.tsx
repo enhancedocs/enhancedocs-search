@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { classNames } from './helpers/styles';
+import classNames from './helpers/classnames';
 import useKeyDown from './hooks/use-key-down';
 import CommandIcon from './components/icons/CommandIcon';
 import SearchIcon from './components/icons/SearchIcon';
@@ -14,7 +14,12 @@ type SearchProps = {
   shape?: 'square' | 'round';
 }
 
-function Search({ accessToken, placeholder = 'EnhanceDocs Search', size = 'large', shape = 'round' }: SearchProps) {
+function Search({
+  accessToken,
+  placeholder = 'Search',
+  size = 'large',
+  shape = 'round'
+}: SearchProps) {
   const [searchModal, setSearchModal] = useState(false);
 
   function openSearchModal() {
@@ -34,15 +39,15 @@ function Search({ accessToken, placeholder = 'EnhanceDocs Search', size = 'large
         className={
           classNames(
             classes.EnhancedSearch,
-            classes[`EnhancedSearch_${size}`],
-            classes[`EnhancedSearch_${shape}`]
+            classes[`EnhancedSearch__${size}`],
+            classes[`EnhancedSearch__${shape}`]
           )
         }
         onClick={openSearchModal}
       >
         <SearchIcon />
         {placeholder}
-        <div className={classes.EnhancedSearch_IconsContainer}>
+        <div className={classes.EnhancedSearch__IconsContainer}>
           <Key><CommandIcon /></Key>
           <Key>K</Key>
         </div>

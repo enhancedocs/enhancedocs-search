@@ -1,12 +1,17 @@
+import classNames from '../../helpers/classnames';
 import classes from './Key.module.css';
 
 type KeyProps = {
   children: React.ReactNode;
+  className?: string;
 }
 
-function Key({ children, ...props }: KeyProps) {
+function Key({ children, className, ...props }: KeyProps) {
   return (
-    <div className={classes.EnhancedSearch_KeyContainer} {...props}>
+    <div
+      className={classNames(classes.EnhancedSearch_KeyContainer, className)}
+      {...props}
+    >
       {children}
     </div>
   )

@@ -1,11 +1,11 @@
-import { FormEvent, lazy, Suspense, useState } from 'react';
+import { FormEvent, lazy, Suspense, useRef, useState } from 'react';
 import Modal from 'react-modal';
-import DotStretching from '../dot-stretching/DotStretching';
 import CheckCircle from '../icons/CheckCircle';
 import LinkIcon from '../icons/LinkIcon';
 import SearchIcon from '../icons/SearchIcon';
 import SubmitIcon from '../icons/SubmitIcon';
 import Key from '../key/Key';
+import DotStretching from './components/dot-stretching/DotStretching';
 import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
 import { DocsResponse, getDocs, answerFeedback } from './services/search';
 import classes from './SearchModal.module.css';
@@ -21,6 +21,7 @@ type SearchModalProps = {
 }
 
 function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
+  const inputRef = useRef(null);
   const [docs, setDocs] = useState<DocsResponse>(INITIAL_DOCS);
   const [loading, setLoading] = useState(false);
   const [feedbackLoading, setFeedbackLoading] = useState(false);
@@ -62,6 +63,9 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
           answer: data.answer,
           sources: data.sources
         });
+        if (inputRef.current) {
+          (inputRef.current as HTMLInputElement).blur();
+        }
       } else {
         setDocs(INITIAL_DOCS);
       }
@@ -75,7 +79,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
 
   return (
     <Modal
-      className={classes.EnhancedSearch_SearchModal_Content}
+      className={classes.EnhancedSearch__SearchModal__Content}
       style={{ overlay: { backgroundColor: 'rgb(24, 27, 33, 0.3)' } }}
       isOpen={isOpen}
       onRequestClose={handleClose}
@@ -83,31 +87,32 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
       ariaHideApp={false}
     >
       <form
-        className={classes.EnhancedSearch_SearchModal_InputContainer}
+        className={classes.EnhancedSearch__SearchModal__InputContainer}
         name="search-form"
         onSubmit={handleSearchDocs}
       >
         <SearchIcon />
         <input
-          className={classes.EnhancedSearch_SearchModal_Input}
+          className={classes.EnhancedSearch__SearchModal__Input}
+          ref={inputRef}
           name="search"
           placeholder="Ask a question or search the docs..."
           autoFocus
         />
-        <Key>
-          <button className={classes.EnhancedSearch_SearchModal_SubmitButton} type="submit">
+        <Key className={classes.EnhancedSearch__SearchModal__SubmitButtonKey}>
+          <button className={classes.EnhancedSearch__SearchModal__SubmitButton} type="submit">
             <SubmitIcon />
           </button>
         </Key>
       </form>
-      <div className={classes.EnhancedSearch_SearchModal_InnerBody}>
+      <div className={classes.EnhancedSearch__SearchModal__InnerBody}>
         {
           loading
             ? (
-              <div className={classes.EnhancedSearch_SearchModal_SearchContainer}>
+              <div className={classes.EnhancedSearch__SearchModal__SearchContainer}>
                 <span>Gathering sources...</span>
-                <div className={classes.EnhancedSearch_SearchModal_LoadingContainer}>
-                  <div className={classes.EnhancedSearch_SearchModal_Loading} />
+                <div className={classes.EnhancedSearch__SearchModal__LoadingContainer}>
+                  <div className={classes.EnhancedSearch__SearchModal__Loading} />
                 </div>
               </div>
             )
@@ -115,16 +120,16 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
               docs.search
                 ? (
                   <div>
-                    <h2 className={classes.EnhancedSearch_SearchModal_ResultQuery}>{docs.search}</h2>
+                    <h2 className={classes.EnhancedSearch__SearchModal__ResultQuery}>{docs.search}</h2>
                     <Suspense fallback={<></>}>
                       <ReactMarkdown
-                        className={classes.EnhancedSearch_SearchModal_ResultAnswer}
+                        className={classes.EnhancedSearch__SearchModal__ResultAnswer}
                         components={{
                           code(props) {
-                            return <code className={classes.EnhancedSearch_SearchModal_ResultAnswerCode} {...props} />;
+                            return <code className={classes.EnhancedSearch__SearchModal__ResultAnswerCode} {...props} />;
                           },
                           a(props) {
-                            return <a className={classes.EnhancedSearch_SearchModal_ResultAnswerLink} {...props} />;
+                            return <a className={classes.EnhancedSearch__SearchModal__ResultAnswerLink} {...props} />;
                           }
                         }}
                         >
@@ -135,30 +140,30 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                     {
                       feedbackLoading
                         ? (
-                          <div className={classes.EnhancedSearch_SearchModal_Feedback}>
+                          <div className={classes.EnhancedSearch__SearchModal__Feedback}>
                             <DotStretching />
                           </div>
                         ) : (
-                          <div className={classes.EnhancedSearch_SearchModal_Feedback}>
+                          <div className={classes.EnhancedSearch__SearchModal__Feedback}>
                             {
                               feedbackSuccess
                                 ? (
-                                  <div className={classes.EnhancedSearch_SearchModal_SuccessFeedback}>
+                                  <div className={classes.EnhancedSearch__SearchModal__SuccessFeedback}>
                                     <CheckCircle />
                                     <span>Thanks for submitting your feedback!</span>
                                   </div>
                                 )
                                 : (
                                   <>
-                                    <p className={classes.EnhancedSearch_SearchModal_FeedbackTitle}>Was this response useful?</p>
+                                    <p className={classes.EnhancedSearch__SearchModal__FeedbackTitle}>Was this response useful?</p>
                                     <button
-                                      className={classes.EnhancedSearch_SearchModal_FeedbackButton}
+                                      className={classes.EnhancedSearch__SearchModal__FeedbackButton}
                                       onClick={() => handleFeedback({ answerId: docs._id, usefulFeedback: true })}
                                     >
                                       Yes
                                     </button>
                                     <button
-                                      className={classes.EnhancedSearch_SearchModal_FeedbackButton}
+                                      className={classes.EnhancedSearch__SearchModal__FeedbackButton}
                                       onClick={() => handleFeedback({ answerId: docs._id, usefulFeedback: false })}
                                     >
                                       No
@@ -170,8 +175,8 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                         )
                     }
 
-                    <div className={classes.EnhancedSearch_SearchModal_ResultSources}>
-                      <p className={classes.EnhancedSearch_Search_modal_ResultSourcesTitle}>
+                    <div className={classes.EnhancedSearch__SearchModal__ResultSources}>
+                      <p className={classes.EnhancedSearch__SearchModal__ResultSourcesTitle}>
                         Summary generated from the following sources:
                       </p>
                       <div>
@@ -179,7 +184,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                           return (
                             <a
                               key={`source-${index}`}
-                              className={classes.EnhancedSearch_SearchModal_ResultSourceItem}
+                              className={classes.EnhancedSearch__SearchModal__ResultSourceItem}
                               href={source}
                             >
                               <LinkIcon />
@@ -191,30 +196,30 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                     </div>
                   </div>
                 ) : (
-                  <div className={classes.EnhancedSearch_SearchModal_SearchContainer}>
+                  <div className={classes.EnhancedSearch__SearchModal__SearchContainer}>
                     <span>No recent searches</span>
                   </div>
                 )
             )
         }
-        <div className={classes.EnhancedSearch_SearchModal_Footer}>
+        <div className={classes.EnhancedSearch__SearchModal__Footer}>
           <div>
-            <div className={classes.EnhancedSearch_SearchModal_FooterKey}>
+            <div className={classes.EnhancedSearch__SearchModal__FooterKey}>
               <Key>esc</Key>
               to close
             </div>
           </div>
-          <div className={classes.EnhancedSearch_SearchModal_FooterLogoContainer}>
+          <div className={classes.EnhancedSearch__SearchModal__FooterLogoContainer}>
             <span>
               Search by
             </span>
             <a
-              className={classes.EnhancedSearch_SearchModal_FooterLink}
+              className={classes.EnhancedSearch__SearchModal__FooterLink}
               href="http://enhancedocs.com/"
               target="_blank"
               rel="noreferrer noopener"
             >
-              <EnhanceDocsLogo className={classes.EnhancedSearch_SearchModal_FooterLogo} />
+              <EnhanceDocsLogo className={classes.EnhancedSearch__SearchModal__FooterLogo} />
             </a>
           </div>
         </div>

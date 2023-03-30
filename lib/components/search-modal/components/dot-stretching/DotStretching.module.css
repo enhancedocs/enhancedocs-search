@@ -1,4 +1,4 @@
-.EnhancedSearch_DotStretching {
+.EnhancedSearch__DotStretching {
   position: relative;
   width: 8px;
   height: 8px;
@@ -7,36 +7,36 @@
   color: #3663eb;
   transform: scale(1.25, 1.25);
   margin: 0px 16px;
-  animation: dot-stretching 1s infinite ease-in;
+  animation: stretching 1s infinite ease-in;
 }
 
-.EnhancedSearch_DotStretching::before,
-.EnhancedSearch_DotStretching::after {
+.EnhancedSearch__DotStretching::before,
+.EnhancedSearch__DotStretching::after {
   content: "";
   display: inline-block;
   position: absolute;
   top: 0;
 }
 
-.EnhancedSearch_DotStretching::before {
+.EnhancedSearch__DotStretching::before {
   width: 8px;
   height: 8px;
   border-radius: 5px;
   background-color: #3663eb;
   color: #3663eb;
-  animation: dot-stretching-before 1s infinite ease-in;
+  animation: stretching-before 1s infinite ease-in;
 }
 
-.EnhancedSearch_DotStretching::after {
+.EnhancedSearch__DotStretching::after {
   width: 8px;
   height: 8px;
   border-radius: 5px;
   background-color: #3663eb;
   color: #3663eb;
-  animation: dot-stretching-after 1s infinite ease-in;
+  animation: stretching-after 1s infinite ease-in;
 }
 
-@keyframes dot-stretching {
+@keyframes stretching {
   0% {
     transform: scale(1.25, 1.25);
   }
@@ -48,7 +48,7 @@
   }
 }
 
-@keyframes dot-stretching-before {
+@keyframes stretching-before {
   0% {
     transform: translate(0) scale(0.7, 0.7);
   }
@@ -60,7 +60,7 @@
   }
 }
 
-@keyframes dot-stretching-after {
+@keyframes stretching-after {
   0% {
     transform: translate(0) scale(0.7, 0.7);
   }
