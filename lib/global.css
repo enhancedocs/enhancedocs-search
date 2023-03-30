@@ -22,7 +22,8 @@
   --color-success-base: #4BBB69;
 }
 
-:root.light {
+:root.light,
+[data-theme='light']:root {
   --color-neutral-lighten3: #F7FAFF;
   --color-neutral-lighten2: #DEE9FF;
   --color-neutral-lighten1: #BECEED;
@@ -34,7 +35,8 @@
   --color-black: #000000;
 }
 
-:root.dark {
+:root.dark,
+[data-theme='dark']:root {
   --color-neutral-lighten3: #181B21;
   --color-neutral-lighten2: #3D4554;
   --color-neutral-lighten1: #626F87;
