@@ -2,8 +2,8 @@ import { FormEvent, lazy, Suspense, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import CheckCircle from '../icons/CheckCircle';
 import LinkIcon from '../icons/LinkIcon';
+import MagicIcon from '../icons/MagicIcon';
 import SearchIcon from '../icons/SearchIcon';
-import SubmitIcon from '../icons/SubmitIcon';
 import Key from '../key/Key';
 import DotStretching from './components/dot-stretching/DotStretching';
 import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
@@ -101,7 +101,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
         />
         <Key className={classes.EnhancedSearch__SearchModal__SubmitButtonKey}>
           <button className={classes.EnhancedSearch__SearchModal__SubmitButton} type="submit">
-            <SubmitIcon />
+            <MagicIcon />
           </button>
         </Key>
       </form>

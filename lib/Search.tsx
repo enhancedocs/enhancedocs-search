@@ -17,7 +17,7 @@ type SearchProps = {
 function Search({
   accessToken,
   placeholder = 'Search',
-  size = 'large',
+  size = 'middle',
   shape = 'round'
 }: SearchProps) {
   const [searchModal, setSearchModal] = useState(false);
@@ -46,10 +46,10 @@ function Search({
         onClick={openSearchModal}
       >
         <SearchIcon />
-        {placeholder}
+        <span className={classes.EnhancedSearch__Placeholder}>{placeholder}</span>
         <div className={classes.EnhancedSearch__IconsContainer}>
-          <Key><CommandIcon /></Key>
-          <Key>K</Key>
+          <Key size={size}><CommandIcon /></Key>
+          <Key size={size}>K</Key>
         </div>
       </button>
       <SearchModal

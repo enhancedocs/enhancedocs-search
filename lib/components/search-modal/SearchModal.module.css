@@ -1,4 +1,5 @@
 .ReactModal__Overlay {
+  z-index: 999;
   opacity: 0;
   transition: opacity 200ms ease-in-out;
 }
@@ -27,19 +28,6 @@
   outline: none;
   inset: 0;
   padding: 0;
-  z-index: 999;
-
-}
-
-@media (min-width: 600px) {
-  .EnhancedSearch__SearchModal__Content {
-    min-width: 550px;
-    max-width: 550px;
-    height: fit-content;
-    min-height: 200px;
-    max-height: calc(100vh - 160px);
-    border-radius: 16px;
-  }
 }
 
 .EnhancedSearch__SearchModal__InputContainer {
@@ -241,6 +229,17 @@
 
 .EnhancedSearch__SearchModal__ResultSourceItem:hover {
   text-decoration: underline;
+}
+
+@media (min-width: 600px) {
+  .EnhancedSearch__SearchModal__Content {
+    min-width: 550px;
+    max-width: 550px;
+    height: fit-content;
+    min-height: 200px;
+    max-height: calc(100vh - 160px);
+    border-radius: 16px;
+  }
 }
 
 @keyframes load {
