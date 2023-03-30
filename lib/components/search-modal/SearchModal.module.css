@@ -1,6 +1,7 @@
 .ReactModal__Overlay {
   z-index: 999;
   opacity: 0;
+  background-color: var(--color-white)4d;
   transition: opacity 200ms ease-in-out;
 }
 
