@@ -11,13 +11,23 @@
 }
 .EnhancedSearch:hover {
   color: var(--color-neutral-darken3);
-  background: white;
+  background: var(--color-neutral-lighten2);
   box-shadow: inset 0 0 0 2px var(--color-primary-base);
 }
 .EnhancedSearch:active {
   color: var(--color-neutral-darken3);
   background: var(--color-neutral-lighten2);
   box-shadow: inset 0 0 0 2px var(--color-neutral-lighten2);
+}
+
+.EnhancedSearch svg {
+  color: var(--color-neutral-base);
+}
+.EnhancedSearch:hover svg {
+  color: var(--color-neutral-darken3);
+}
+.EnhancedSearch:hover .EnhancedSearch__Placeholder {
+  color: var(--color-neutral-darken3);
 }
 
 /* size */
@@ -73,6 +83,7 @@
 
   .EnhancedSearch__Placeholder {
     display: block;
+    color: var(--color-neutral-base);
   }
 
   .EnhancedSearch__IconsContainer {

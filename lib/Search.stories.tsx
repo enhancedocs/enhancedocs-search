@@ -13,17 +13,23 @@ const Template: ComponentStory<typeof Search> = (args) => {
   const [currentTheme, setCurrentTheme] = useState('light')
 
   function toggleMode() {
-    const newTheme = currentTheme == 'light' ? 'dark' : 'light';
-    localStorage.setItem('theme', newTheme);
-    setCurrentTheme(newTheme);
+    if (currentTheme == 'light') {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+      setCurrentTheme('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+      setCurrentTheme('light');
+    }
   }
 
   return (
     <div>
       <div>
-        Current theme: {currentTheme}
-        <button onClick={toggleMode} style={{ marginBottom: 32 }}>
-          Toggle light/dark mode
+        {currentTheme} theme
+        <button onClick={toggleMode} style={{ marginLeft: 8, marginBottom: 32, cursor: 'pointer' }}>
+          {currentTheme == 'light' ? '🌝' : '🌚'}
         </button>
       </div>
       <Search {...args} />
