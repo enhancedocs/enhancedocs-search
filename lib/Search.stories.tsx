@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Search from './Search';
 
@@ -8,7 +9,27 @@ export default {
   component: Search
 } as ComponentMeta<typeof Search>;
 
-const Template: ComponentStory<typeof Search> = (args) => <Search {...args} />;
+const Template: ComponentStory<typeof Search> = (args) => {
+  const [currentTheme, setCurrentTheme] = useState('light')
+
+  function toggleMode() {
+    const newTheme = currentTheme == 'light' ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    setCurrentTheme(newTheme);
+  }
+
+  return (
+    <div>
+      <div>
+        Current theme: {currentTheme}
+        <button onClick={toggleMode} style={{ marginBottom: 32 }}>
+          Toggle light/dark mode
+        </button>
+      </div>
+      <Search {...args} />
+    </div>
+  );
+};
 
 export const Example = Template.bind({});
 Example.args = {

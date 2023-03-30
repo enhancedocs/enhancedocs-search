@@ -3,8 +3,8 @@
   width: 8px;
   height: 8px;
   border-radius: 5px;
-  background-color: #3663eb;
-  color: #3663eb;
+  background-color: var(--color-primary-base);
+  color: var(--color-primary-base);
   transform: scale(1.25, 1.25);
   margin: 0px 16px;
   animation: stretching 1s infinite ease-in;
@@ -22,8 +22,8 @@
   width: 8px;
   height: 8px;
   border-radius: 5px;
-  background-color: #3663eb;
-  color: #3663eb;
+  background-color: var(--color-primary-base);
+  color: var(--color-primary-base);
   animation: stretching-before 1s infinite ease-in;
 }
 
@@ -31,8 +31,8 @@
   width: 8px;
   height: 8px;
   border-radius: 5px;
-  background-color: #3663eb;
-  color: #3663eb;
+  background-color: var(--color-primary-base);
+  color: var(--color-primary-base);
   animation: stretching-after 1s infinite ease-in;
 }
 
