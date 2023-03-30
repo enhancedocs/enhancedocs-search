@@ -1,5 +1,6 @@
 import { FormEvent, lazy, Suspense, useRef, useState } from 'react';
 import Modal from 'react-modal';
+import BackArrowIcon from '../icons/BackArrowIcon';
 import CheckCircle from '../icons/CheckCircle';
 import LinkIcon from '../icons/LinkIcon';
 import MagicIcon from '../icons/MagicIcon';
@@ -91,12 +92,18 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
         name="search-form"
         onSubmit={handleSearchDocs}
       >
-        <SearchIcon />
+        <div
+          className={classes.EnhancedSearch__SearchModal__BackContainer}
+          onClick={handleClose}
+        >
+          <BackArrowIcon className={classes.EnhancedSearch__SearchModal__BackArrowIcon} />
+        </div>
+        <SearchIcon className={classes.EnhancedSearch__SearchModal__SearchIcon} />
         <input
           className={classes.EnhancedSearch__SearchModal__Input}
           ref={inputRef}
           name="search"
-          placeholder="Ask a question or search the docs..."
+          placeholder="Search the docs or ask a question..."
           autoFocus
         />
         <Key className={classes.EnhancedSearch__SearchModal__SubmitButtonKey}>
@@ -109,7 +116,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
         {
           loading
             ? (
-              <div className={classes.EnhancedSearch__SearchModal__SearchContainer}>
+              <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
                 <span>Gathering sources...</span>
                 <div className={classes.EnhancedSearch__SearchModal__LoadingContainer}>
                   <div className={classes.EnhancedSearch__SearchModal__Loading} />
@@ -119,7 +126,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
             : (
               docs.search
                 ? (
-                  <div>
+                  <div className={classes.EnhancedSearch__SearchModal__SearchContainer}>
                     <h2 className={classes.EnhancedSearch__SearchModal__ResultQuery}>{docs.search}</h2>
                     <Suspense fallback={<></>}>
                       <ReactMarkdown
@@ -196,13 +203,13 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
                     </div>
                   </div>
                 ) : (
-                  <div className={classes.EnhancedSearch__SearchModal__SearchContainer}>
+                  <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
                     <span>No recent searches</span>
                   </div>
                 )
             )
         }
-        <div className={classes.EnhancedSearch__SearchModal__Footer}>
+        <footer className={classes.EnhancedSearch__SearchModal__Footer}>
           <div>
             <div className={classes.EnhancedSearch__SearchModal__FooterKey}>
               <Key>esc</Key>
@@ -222,7 +229,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
               <EnhanceDocsLogo className={classes.EnhancedSearch__SearchModal__FooterLogo} />
             </a>
           </div>
-        </div>
+        </footer>
       </div>
     </Modal>
   )
