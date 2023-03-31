@@ -1,0 +1,35 @@
+.EnhancedSearch__SearchModal__Footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-neutral-lighten2);
+  margin-top: 8px;
+  padding-top: 16px;
+}
+
+.EnhancedSearch__SearchModal__FooterKey {
+  display: none;
+}
+
+.EnhancedSearch__SearchModal__FooterLogoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.EnhancedSearch__SearchModal__FooterLogo {
+  width: 120px;
+}
+
+.EnhancedSearch__SearchModal__FooterLink {
+  line-height: 1px;
+}
+
+@media (min-width: 600px) {
+  .EnhancedSearch__SearchModal__FooterKey {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-neutral-darken2);
+  }
+}

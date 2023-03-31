@@ -12,21 +12,10 @@
   --color-neutral-darken3: #181B21;
   --color-white: #FFFFFF;
   --color-black: #000000;
+  --color-white-rgb: 250, 250, 250;
+  --color-black-rgb: 0, 0, 0;
 
   --color-success-base: #4BBB69;
-}
-
-:root.light,
-[data-theme='light']:root {
-  --color-neutral-lighten3: #F7FAFF;
-  --color-neutral-lighten2: #DEE9FF;
-  --color-neutral-lighten1: #BECEED;
-  --color-neutral-base: #8798BA;
-  --color-neutral-darken1: #626F87;
-  --color-neutral-darken2: #3D4554;
-  --color-neutral-darken3: #181B21;
-  --color-white: #FFFFFF;
-  --color-black: #000000;
 }
 
 :root.dark,
@@ -40,4 +29,6 @@
   --color-neutral-darken3: #F7FAFF;
   --color-white: #000000;
   --color-black: #FFFFFF;
+  --color-white-rgb: 0, 0, 0;
+  --color-black-rgb: 250, 250, 250;
 }

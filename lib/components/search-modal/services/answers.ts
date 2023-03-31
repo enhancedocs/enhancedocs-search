@@ -1,26 +1,18 @@
-const BASE_URL = 'https://api.enhancedocs.com';
+import { Get, Post } from './instance';
 
-async function Get(route: string, config?: Object) {
-  return fetch(`${BASE_URL}${route}`, config).then((response) => response.json());
-}
-
-async function Post(route: string, config?: Object) {
-  return fetch(`${BASE_URL}${route}`, { method: 'POST', ...config }).then((response) => response.json());
-}
-
-export type DocsResponse = {
+export type AnswerType = {
   _id: string;
   search: string;
   answer: string;
   sources: Array<string>;
 };
 
-type GetDocsType = {
+type GetAnswers = {
   accessToken: string;
   search: string;
 }
 
-export function getDocs({ accessToken, search }: GetDocsType): Promise<DocsResponse> {
+export function getAnswers({ accessToken, search }: GetAnswers): Promise<AnswerType> {
   return Get(`/questions/ask?q=${search}`, { headers: { Authorization: `Bearer ${accessToken}` } });
 }
 

@@ -1,19 +1,19 @@
-import { FormEvent, lazy, Suspense, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
+import { getLocalStorageItem, setLocalStorageItem } from '../../helpers/localstorage';
 import BackArrowIcon from '../icons/BackArrowIcon';
-import CheckCircle from '../icons/CheckCircle';
-import LinkIcon from '../icons/LinkIcon';
 import MagicIcon from '../icons/MagicIcon';
 import SearchIcon from '../icons/SearchIcon';
 import Key from '../key/Key';
-import DotStretching from './components/dot-stretching/DotStretching';
-import EnhanceDocsLogo from './components/enhancedocs-logo/EnhanceDocsLogo';
-import { DocsResponse, getDocs, answerFeedback } from './services/search';
+import Answer from './components/answer/Answer';
+import DocsList from './components/docs-list/DocsList';
+import Footer from './components/footer/Footer';
+import { AnswerType, getAnswers } from './services/answers';
+import { DocsType, DocType, getDocs } from './services/docs';
 import classes from './SearchModal.module.css';
 
-const ReactMarkdown = lazy(() => import('react-markdown'));
-
-const INITIAL_DOCS = { _id: '', search: '', answer: '', sources: [] };
+const INITIAL_ANSWER = { _id: '', search: '', answer: '', sources: [] };
+const INITIAL_DOCS: DocsType = [];
 
 type SearchModalProps = {
   accessToken: string;
@@ -23,42 +23,46 @@ type SearchModalProps = {
 
 function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef(null);
-  const [docs, setDocs] = useState<DocsResponse>(INITIAL_DOCS);
-  const [loading, setLoading] = useState(false);
-  const [feedbackLoading, setFeedbackLoading] = useState(false);
-  const [feedbackSuccess, setFeedbackSuccess] = useState(false);
+  const [recentSearches, setRecentSearches] = useState<DocsType>([]);
+  const [docs, setDocs] = useState<DocsType>(INITIAL_DOCS);
+  const [answer, setAnswer] = useState<AnswerType>(INITIAL_ANSWER);
+  const [loadingAnswer, setLoadingAnswer] = useState(false);
 
   function handleClose() {
     onClose();
+    setRecentSearches([]);
     setDocs(INITIAL_DOCS);
-    setFeedbackSuccess(false);
+    setAnswer(INITIAL_ANSWER);
   }
 
-  async function handleFeedback({ answerId, usefulFeedback }: { answerId: string, usefulFeedback: boolean }) {
+  async function handleSearchDocs(event: ChangeEvent<HTMLInputElement>) {
     try {
-      setFeedbackLoading(true);
-      await answerFeedback({ accessToken, answerId, usefulFeedback });
-      setFeedbackSuccess(true);
+      const { value } = event.target;
+      const data = await getDocs({ accessToken, search: value });
+      setDocs(data);
     } catch (error) {
-      console.error(error);
-    } finally {
-      setFeedbackLoading(false);
+      console.error('Search docs', error);
     }
   }
 
-  async function handleSearchDocs(event: FormEvent<HTMLFormElement>) {
+  function handleDocClick(doc: DocType) {
+    handleClose();
+    setLocalStorageItem('recentSearches', [...recentSearches, doc]);
+  }
+
+  async function handleSearchAnswers(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     try {
-      setLoading(true);
+      setLoadingAnswer(true);
 
       const data = new FormData(event.target as HTMLFormElement);
       const formValues = Object.fromEntries(data.entries());
       const search = formValues.search as string;
 
       if (search) {
-        const data = await getDocs({ accessToken, search });
-        setDocs({
+        const data = await getAnswers({ accessToken, search });
+        setAnswer({
           search,
           _id: data._id,
           answer: data.answer,
@@ -68,20 +72,27 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
           (inputRef.current as HTMLInputElement).blur();
         }
       } else {
-        setDocs(INITIAL_DOCS);
+        setAnswer(INITIAL_ANSWER);
       }
     } catch(error) {
-      console.error(error);
+      console.error('Search answers', error);
     } finally {
-      setFeedbackSuccess(false);
-      setLoading(false);
+      setLoadingAnswer(false);
     }
   }
 
+  useEffect(() => {
+    if (isOpen) {
+      const localRecentSearches = getLocalStorageItem('recentSearches');
+      if (localRecentSearches) {
+        setRecentSearches(localRecentSearches);
+      }
+    }
+  }, [isOpen]);
+
   return (
     <Modal
-      className={classes.EnhancedSearch__SearchModal__Content}
-      style={{ overlay: { backgroundColor: 'rgb(24, 27, 33, 0.3)' } }}
+      className={classes.EnhancedSearch__SearchModal}
       isOpen={isOpen}
       onRequestClose={handleClose}
       contentLabel="Search"
@@ -89,8 +100,8 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
     >
       <form
         className={classes.EnhancedSearch__SearchModal__InputContainer}
-        name="search-form"
-        onSubmit={handleSearchDocs}
+        name="enhancedsearch-form"
+        onSubmit={handleSearchAnswers}
       >
         <div
           className={classes.EnhancedSearch__SearchModal__BackContainer}
@@ -104,6 +115,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
           ref={inputRef}
           name="search"
           placeholder="Search the docs or ask a question..."
+          onChange={handleSearchDocs}
           autoFocus
         />
         <Key className={classes.EnhancedSearch__SearchModal__SubmitButtonKey}>
@@ -112,124 +124,40 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
           </button>
         </Key>
       </form>
+
       <div className={classes.EnhancedSearch__SearchModal__InnerBody}>
+        <Answer
+          accessToken={accessToken}
+          answer={answer}
+          loading={loadingAnswer}
+        />
         {
-          loading
+          docs.length
             ? (
-              <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
-                <span>Gathering sources...</span>
-                <div className={classes.EnhancedSearch__SearchModal__LoadingContainer}>
-                  <div className={classes.EnhancedSearch__SearchModal__Loading} />
-                </div>
-              </div>
+              <>
+                <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Results</p>
+                <DocsList
+                  docs={docs}
+                  onClick={handleDocClick}
+                />
+              </>
             )
             : (
-              docs.search
+              recentSearches.length
                 ? (
-                  <div className={classes.EnhancedSearch__SearchModal__SearchContainer}>
-                    <h2 className={classes.EnhancedSearch__SearchModal__ResultQuery}>{docs.search}</h2>
-                    <Suspense fallback={<></>}>
-                      <ReactMarkdown
-                        className={classes.EnhancedSearch__SearchModal__ResultAnswer}
-                        components={{
-                          code(props) {
-                            return <code className={classes.EnhancedSearch__SearchModal__ResultAnswerCode} {...props} />;
-                          },
-                          a(props) {
-                            return <a className={classes.EnhancedSearch__SearchModal__ResultAnswerLink} {...props} />;
-                          }
-                        }}
-                        >
-                        {docs.answer}
-                      </ReactMarkdown>
-                    </Suspense>
-
-                    {
-                      feedbackLoading
-                        ? (
-                          <div className={classes.EnhancedSearch__SearchModal__Feedback}>
-                            <DotStretching />
-                          </div>
-                        ) : (
-                          <div className={classes.EnhancedSearch__SearchModal__Feedback}>
-                            {
-                              feedbackSuccess
-                                ? (
-                                  <div className={classes.EnhancedSearch__SearchModal__SuccessFeedback}>
-                                    <CheckCircle />
-                                    <span>Thanks for submitting your feedback!</span>
-                                  </div>
-                                )
-                                : (
-                                  <>
-                                    <p className={classes.EnhancedSearch__SearchModal__FeedbackTitle}>Was this response useful?</p>
-                                    <button
-                                      className={classes.EnhancedSearch__SearchModal__FeedbackButton}
-                                      onClick={() => handleFeedback({ answerId: docs._id, usefulFeedback: true })}
-                                    >
-                                      Yes
-                                    </button>
-                                    <button
-                                      className={classes.EnhancedSearch__SearchModal__FeedbackButton}
-                                      onClick={() => handleFeedback({ answerId: docs._id, usefulFeedback: false })}
-                                    >
-                                      No
-                                    </button>
-                                  </>
-                                )
-                            }
-                          </div>
-                        )
-                    }
-
-                    <div className={classes.EnhancedSearch__SearchModal__ResultSources}>
-                      <p className={classes.EnhancedSearch__SearchModal__ResultSourcesTitle}>
-                        Summary generated from the following sources:
-                      </p>
-                      <div>
-                        {docs.sources.map((source, index) => {
-                          return (
-                            <a
-                              key={`source-${index}`}
-                              className={classes.EnhancedSearch__SearchModal__ResultSourceItem}
-                              href={source}
-                            >
-                              <LinkIcon />
-                              {source}
-                            </a>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
+                  <>
+                    <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Recent</p>
+                    <DocsList docs={recentSearches} />
+                  </>
+                )
+                : (
                   <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
                     <span>No recent searches</span>
                   </div>
                 )
             )
         }
-        <footer className={classes.EnhancedSearch__SearchModal__Footer}>
-          <div>
-            <div className={classes.EnhancedSearch__SearchModal__FooterKey}>
-              <Key>esc</Key>
-              to close
-            </div>
-          </div>
-          <div className={classes.EnhancedSearch__SearchModal__FooterLogoContainer}>
-            <span>
-              Search by
-            </span>
-            <a
-              className={classes.EnhancedSearch__SearchModal__FooterLink}
-              href="http://enhancedocs.com/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <EnhanceDocsLogo className={classes.EnhancedSearch__SearchModal__FooterLogo} />
-            </a>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </Modal>
   )
