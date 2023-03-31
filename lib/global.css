@@ -12,6 +12,8 @@
   --color-neutral-darken3: #181B21;
   --color-white: #FFFFFF;
   --color-black: #000000;
+  --color-white-rgb: 250, 250, 250;
+  --color-black-rgb: 0, 0, 0;
 
   --color-success-base: #4BBB69;
 }
@@ -27,6 +29,8 @@
   --color-neutral-darken3: #181B21;
   --color-white: #FFFFFF;
   --color-black: #000000;
+  --color-white-rgb: 250, 250, 250;
+  --color-black-rgb: 0, 0, 0;
 }
 
 :root.dark,
@@ -40,4 +44,6 @@
   --color-neutral-darken3: #F7FAFF;
   --color-white: #000000;
   --color-black: #FFFFFF;
+  --color-white-rgb: 0, 0, 0;
+  --color-black-rgb: 250, 250, 250;
 }
