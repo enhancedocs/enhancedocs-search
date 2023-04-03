@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Search from './Search';
 
-const ACCESS_TOKEN = 'pk_54cdfba3dfaeef6a7636976b03e6afc0930a336d9a0f33eb';
-
 export default {
   title: 'Search',
   component: Search
@@ -39,5 +37,14 @@ const Template: ComponentStory<typeof Search> = (args) => {
 
 export const Example = Template.bind({});
 Example.args = {
-  accessToken: ACCESS_TOKEN
+  config: {
+    enhancedocs: {
+      accessToken: 'pk_54cdfba3dfaeef6a7636976b03e6afc0930a336d9a0f33eb',
+    },
+    typesense: {
+      apiKey: 'VknaNXobIMS1DocvqohOZxDwfP4jqYO2',
+      host: '824vz69qrn0af371p-1.a1.typesense.net',
+      collection: 'ni61t27j9poqkf5bp_1680527568'
+    }
+  }
 };

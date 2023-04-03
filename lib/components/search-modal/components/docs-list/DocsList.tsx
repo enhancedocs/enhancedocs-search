@@ -20,25 +20,23 @@ function DocsList({ docs, onClick }: DocsListProps) {
         {docs.map((doc) => {
           const Icon = (icons[doc.type] || null);
           return (
-            <li
-              key={doc._id}
-              className={classes.EnhancedSearch__SearchModal__DocsListItem}
-              onClick={onClick ? () => onClick(doc) : undefined}
-            >
-              {Icon && (
-                <div className={classes.EnhancedSearch__SearchModal__DocsListItemIcon}>
-                  <Icon />
+            <a key={doc._id} href={doc.url} onClick={onClick ? () => onClick(doc) : undefined}>
+              <li className={classes.EnhancedSearch__SearchModal__DocsListItem}>
+                {Icon && (
+                  <div className={classes.EnhancedSearch__SearchModal__DocsListItemIcon}>
+                    <Icon />
+                  </div>
+                )}
+                <div>
+                  <span className={classes.EnhancedSearch__SearchModal__DocsListItemTitle}>
+                    {doc.title}
+                  </span>
+                  <span className={classes.EnhancedSearch__SearchModal__DocsListItemDescription}>
+                    {doc.description}
+                  </span>
                 </div>
-              )}
-              <div>
-                <span className={classes.EnhancedSearch__SearchModal__DocsListItemTitle}>
-                  {doc.title}
-                </span>
-                <span className={classes.EnhancedSearch__SearchModal__DocsListItemDescription}>
-                  {doc.description}
-                </span>
-              </div>
-            </li>
+              </li>
+            </a>
           )
         })}
       </ul>

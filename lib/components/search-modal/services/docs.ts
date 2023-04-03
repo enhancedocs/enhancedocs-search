@@ -1,25 +1,38 @@
-import { Get } from './instance';
+import Typesense from 'typesense';
+import type { TypesenseConfig } from '../../../Search';
 
 export type DocType = {
   _id: string;
   title: string;
   description?: string;
+  url?: string;
   type: 'page' | 'anchor'
 }
 
 export type DocsType = Array<DocType>;
 
 type GetDocs = {
-  accessToken: string;
+  config: TypesenseConfig;
   search: string;
 }
 
-export function getDocs({ accessToken, search }: GetDocs): Promise<DocsType> {
-  return new Promise((resolve) => setTimeout(() => {
-    resolve(search ? [
-      { _id: '11111111', title: 'Doc 1', description: 'Description 1', type: 'page' },
-      { _id: '22222222', title: 'Doc 2', type: 'anchor' },
-      { _id: '33333333', title: 'Doc 3', description: 'Description 3', type: 'anchor' }
-    ] : []);
-  }, 200));
+export const getDocs = async ({ config, search }: GetDocs) => {
+  const client = new Typesense.Client({
+    nodes: [
+      {
+        host: config.host,
+        port: 443,
+        protocol: 'https'
+      }
+    ],
+    apiKey: config.apiKey,
+    connectionTimeoutSeconds: 2
+  });
+
+  return client.collections(config.collection)
+    .documents()
+    .search({
+      q: search,
+      query_by: 'content, anchor'
+    });
 }

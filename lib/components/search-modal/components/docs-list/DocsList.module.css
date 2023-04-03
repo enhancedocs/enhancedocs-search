@@ -3,6 +3,10 @@
   padding-inline-start: 0;
 }
 
+.EnhancedSearch__SearchModal__DocsList a {
+  text-decoration: none;
+}
+
 .EnhancedSearch__SearchModal__DocsListItem {
   height: 56px;
   display: flex;
@@ -29,13 +33,15 @@
 .EnhancedSearch__SearchModal__DocsListItemTitle {
   display: block;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
+  line-height: 1;
 }
 
 .EnhancedSearch__SearchModal__DocsListItemDescription {
   display: block;
   font-size: 12px;
   margin-top: 4px;
+  line-height: 1;
 }
 
 .EnhancedSearch__SearchModal__DocsListItemIcon,

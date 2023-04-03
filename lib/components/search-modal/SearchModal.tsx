@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import { getLocalStorageItem, setLocalStorageItem } from '../../helpers/localstorage';
+import type { Config } from '../../Search';
 import BackArrowIcon from '../icons/BackArrowIcon';
 import MagicIcon from '../icons/MagicIcon';
 import SearchIcon from '../icons/SearchIcon';
@@ -12,16 +13,31 @@ import { AnswerType, getAnswers } from './services/answers';
 import { DocsType, DocType, getDocs } from './services/docs';
 import classes from './SearchModal.module.css';
 
+function formatHits(hits: any) {
+  return hits.map((hit: any) => {
+    const { objectID, hierarchy, content, type, url } = hit.document;
+    const hierarchyValues = Object.values(hierarchy).filter(Boolean);
+
+    return {
+      _id: objectID,
+      title: hierarchyValues[hierarchyValues.length - 1],
+      descrption: content,
+      type,
+      url
+    };
+  });
+}
+
 const INITIAL_ANSWER = { _id: '', search: '', answer: '', sources: [] };
 const INITIAL_DOCS: DocsType = [];
 
 type SearchModalProps = {
-  accessToken: string;
+  config: Config;
   isOpen: boolean;
   onClose?: any;
 }
 
-function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
+function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef(null);
   const [recentSearches, setRecentSearches] = useState<DocsType>([]);
   const [docs, setDocs] = useState<DocsType>(INITIAL_DOCS);
@@ -37,9 +53,8 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
 
   async function handleSearchDocs(event: ChangeEvent<HTMLInputElement>) {
     try {
-      const { value } = event.target;
-      const data = await getDocs({ accessToken, search: value });
-      setDocs(data);
+      const { hits } = await getDocs({ config: config.typesense, search: event.target.value });
+      setDocs(formatHits(hits));
     } catch (error) {
       console.error('Search docs', error);
     }
@@ -61,7 +76,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
       const search = formValues.search as string;
 
       if (search) {
-        const data = await getAnswers({ accessToken, search });
+        const data = await getAnswers({ accessToken: config.enhancedocs.accessToken, search });
         setAnswer({
           search,
           _id: data._id,
@@ -127,7 +142,7 @@ function SearchModal({ accessToken, isOpen, onClose }: SearchModalProps) {
 
       <div className={classes.EnhancedSearch__SearchModal__InnerBody}>
         <Answer
-          accessToken={accessToken}
+          accessToken={config.enhancedocs.accessToken}
           answer={answer}
           loading={loadingAnswer}
         />

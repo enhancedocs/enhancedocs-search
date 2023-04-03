@@ -1,9 +1,13 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "license": "Apache-2.0",
   "author": "EnhanceDocs",
+  "contributors": [
+    "playola <playolaizq@gmail.com>",
+    "Alw3ys <alw3ys@gmail.com>"
+  ],
   "repository": {
     "type": "git",
     "url": "git@github.com:enhancedocs/enhancedocs-search.git"
@@ -16,7 +20,8 @@
     "react",
     "enhancedocs",
     "search",
-    "ChatGPT"
+    "ChatGPT",
+    "typesense"
   ],
   "main": "./dist/enhancedocs-search.umd.cjs",
   "module": "./dist/enhancedocs-search.js",
@@ -34,7 +39,8 @@
   },
   "dependencies": {
     "react-markdown": "^8.0.6",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
+    "typesense": "^1.5.3"
   },
   "devDependencies": {
     "@babel/core": "^7.21.3",

@@ -8,15 +8,30 @@ import SearchModal from './components/search-modal/SearchModal';
 import classes from './Search.module.css';
 import './global.css';
 
-type SearchProps = {
+export type EnhanceDocsConfig = {
   accessToken: string;
+}
+
+export type TypesenseConfig = {
+  apiKey: string;
+  host: string;
+  collection: string;
+}
+
+export type Config = {
+  enhancedocs: EnhanceDocsConfig;
+  typesense: TypesenseConfig;
+}
+
+type SearchProps = {
+  config: Config;
   placeholder?: string;
   size?: 'small' | 'middle' | 'large';
   shape?: 'square' | 'round';
 }
 
 function Search({
-  accessToken,
+  config,
   placeholder = 'Search',
   size = 'middle',
   shape = 'round'
@@ -54,7 +69,7 @@ function Search({
         </div>
       </button>
       <SearchModal
-        accessToken={accessToken}
+        config={config}
         isOpen={searchModal}
         onClose={closeSearchModal}
       />
