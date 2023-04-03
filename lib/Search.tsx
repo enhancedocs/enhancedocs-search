@@ -20,7 +20,7 @@ export type TypesenseConfig = {
 
 export type Config = {
   enhancedocs: EnhanceDocsConfig;
-  typesense: TypesenseConfig;
+  typesense?: TypesenseConfig;
 }
 
 type SearchProps = {

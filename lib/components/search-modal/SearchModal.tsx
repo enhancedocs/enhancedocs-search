@@ -52,11 +52,13 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
   }
 
   async function handleSearchDocs(event: ChangeEvent<HTMLInputElement>) {
-    try {
-      const { hits } = await getDocs({ config: config.typesense, search: event.target.value });
-      setDocs(formatHits(hits));
-    } catch (error) {
-      console.error('Search docs', error);
+    if (config.typesense) {
+      try {
+        const { hits } = await getDocs({ config: config.typesense, search: event.target.value });
+        setDocs(formatHits(hits));
+      } catch (error) {
+        console.error('Search docs', error);
+      }
     }
   }
 
