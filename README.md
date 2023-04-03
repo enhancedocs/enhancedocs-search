@@ -32,7 +32,14 @@ import EnhancedSearch from 'enhancedocs-search';
 
 import 'enhancedocs-search/dist/style.css';
 
-<EnhancedSearch enhancedocs={{ accessToken: "pk_abc123" }} {...props} />
+<EnhancedSearch
+  config={{
+    enhancedocs: {
+      accessToken: "pk_abc123"
+    }
+  }}
+  {...props}
+/>
 ```
 
 ### Docusaurus Example
@@ -49,6 +56,15 @@ import EnhancedSearch from 'enhancedocs-search';
 import 'enhancedocs-search/dist/style.css';
 
 export default function SearchBarWrapper(props) {
-  return <EnhancedSearch enhancedocs={{ accessToken: "pk_abc123" }} {...props} />;
+  return (
+    <EnhancedSearch
+      config={{
+        enhancedocs: {
+          accessToken: "pk_abc123"
+        }
+      }}
+      {...props}
+    />
+  );
 }
 ```
