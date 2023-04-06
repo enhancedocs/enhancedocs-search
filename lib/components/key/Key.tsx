@@ -2,7 +2,7 @@ import { classNames } from '../../helpers/styles';
 import classes from './Key.module.css';
 import type { KeyProps } from './Key.d';
 
-function Key({ children, className, size = 'middle', ...props }: KeyProps) {
+export default function Key({ children, className, size = 'middle', ...props }: KeyProps) {
   return (
     <div
       className={
@@ -18,5 +18,3 @@ function Key({ children, className, size = 'middle', ...props }: KeyProps) {
     </div>
   )
 }
-
-export default Key;

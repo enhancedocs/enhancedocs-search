@@ -1,4 +1,4 @@
-import type { Config } from '../../Search.d';
+import type { Config } from '../../Search';
 
 export type SearchModalProps = {
   config: Config;

@@ -50,7 +50,15 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
 
   function handleDocClick(doc: DocType) {
     handleClose();
-    setLocalStorageItem('recentSearches', [...recentSearches, doc]);
+    if (!recentSearches.find(({ _id }) => _id == doc._id)) {
+      setLocalStorageItem('recentSearches', [...recentSearches, doc]);
+    }
+  }
+
+  function handleDocDelete(doc: DocType) {
+    const newRecentSearches = recentSearches.filter(({ _id }) => _id != doc._id)
+    setRecentSearches(newRecentSearches);
+    setLocalStorageItem('recentSearches', newRecentSearches);
   }
 
   async function handleSearchAnswers(event: FormEvent<HTMLFormElement>) {
@@ -148,7 +156,7 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
                   ? (
                     <>
                       <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Recent</p>
-                      <DocsList docs={recentSearches} />
+                      <DocsList docs={recentSearches} onDelete={handleDocDelete} />
                     </>
                   ) : null
               )

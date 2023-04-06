@@ -1,4 +1,4 @@
-import type { DocSearch } from '../../../Search.d';
+import type { DocSearch } from '../../../Search';
 
 export type DocType = {
   _id: string;
