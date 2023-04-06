@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.3] - 2023-04-06
+
+- 🐞 Fix logo colors in dark mode.
+
 ## [0.1.2] - 2023-04-06
 
 - 🐞 Modal height for mobile devices.

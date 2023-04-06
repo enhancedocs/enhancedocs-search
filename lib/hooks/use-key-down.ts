@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-function useKeyDown(callback: Function) {
+export default function useKeyDown (callback: Function) {
   function listener(event: KeyboardEvent) {
     if (event.metaKey && event.key == 'k') {
       callback();
@@ -15,5 +15,3 @@ function useKeyDown(callback: Function) {
     };
   }, []);
 }
-
-export default useKeyDown;

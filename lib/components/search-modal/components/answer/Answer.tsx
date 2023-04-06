@@ -1,17 +1,23 @@
 import { lazy, Suspense, useState } from 'react';
 import LinkIcon from '../../../icons/LinkIcon';
 import { answerFeedback } from '../../services/answers';
+import type { AnswerType } from '../../services/answers.d';
 import Feedback from './components/feedback/Feedback';
 import classes from './Answer.module.css';
-import type { AnswerProps } from './Answer.d';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
 
-function Answer({ accessToken, answer, loading }: AnswerProps) {
+type AnswerProps = {
+  accessToken: string;
+  answer: AnswerType;
+  loading?: boolean;
+}
+
+export default function Answer ({ accessToken, answer, loading }: AnswerProps) {
   const [feedbackLoading, setFeedbackLoading] = useState(false);
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
-  async function handleFeedback({ answerId, usefulFeedback }: { answerId: string, usefulFeedback: boolean }) {
+  async function handleFeedback ({ answerId, usefulFeedback }: { answerId: string, usefulFeedback: boolean }) {
     try {
       setFeedbackLoading(true);
       await answerFeedback({ accessToken, answerId, usefulFeedback });
@@ -91,5 +97,3 @@ function Answer({ accessToken, answer, loading }: AnswerProps) {
         ) : null
   )
 }
-
-export default Answer;

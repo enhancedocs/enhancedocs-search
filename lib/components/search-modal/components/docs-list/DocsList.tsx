@@ -4,14 +4,19 @@ import HashIcon from '../../../icons/HashIcon';
 import CloseIcon from '../../../icons/CloseIcon';
 import type { DocType } from '../../services/docs.d';
 import classes from './DocsList.module.css';
-import type { DocsListProps } from './DocsList.d';
 
 const icons = {
   page: DocumentIcon,
   anchor: HashIcon
 };
 
-function DocsList({ docs, onClick, onDelete }: DocsListProps) {
+type DocsListProps = {
+  docs: Array<DocType>;
+  onClick?: Function;
+  onDelete?: Function;
+}
+
+export default function DocsList ({ docs, onClick, onDelete }: DocsListProps) {
   function handleClick (doc: DocType) {
     if (onClick) {
       onClick(doc);
@@ -65,5 +70,3 @@ function DocsList({ docs, onClick, onDelete }: DocsListProps) {
     ) : null
   )
 }
-
-export default DocsList;

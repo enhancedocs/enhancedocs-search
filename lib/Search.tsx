@@ -31,7 +31,7 @@ export type SearchProps = {
   shape?: 'square' | 'round';
 }
 
-function Search({
+export default function Search ({
   config,
   placeholder = 'Search',
   size = 'middle',
@@ -77,5 +77,3 @@ function Search({
     </>
   )
 }
-
-export default Search;

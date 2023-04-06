@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import { getLocalStorageItem, setLocalStorageItem } from '../../helpers/local-storage';
+import type { Config } from '../../Search';
 import BackArrowIcon from '../icons/BackArrowIcon';
 import MagicIcon from '../icons/MagicIcon';
 import SearchIcon from '../icons/SearchIcon';
@@ -12,28 +13,33 @@ import { getAnswers } from './services/answers';
 import { getDocs } from './services/docs';
 import { formatHits } from './helpers/format';
 import classes from './SearchModal.module.css';
-import type { SearchModalProps } from './SearchModal.d';
 import type { AnswerType } from './services/answers.d';
 import type { DocsType, DocType } from './services/docs.d';
 
 const INITIAL_ANSWER = { _id: '', search: '', answer: '', sources: [] };
 const INITIAL_DOCS: DocsType = [];
 
-function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
+type SearchModalProps = {
+  config: Config;
+  isOpen: boolean;
+  onClose?: any;
+}
+
+export default function SearchModal ({ config, isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef(null);
   const [recentSearches, setRecentSearches] = useState<DocsType>([]);
   const [docs, setDocs] = useState<DocsType>(INITIAL_DOCS);
   const [answer, setAnswer] = useState<AnswerType>(INITIAL_ANSWER);
   const [loadingAnswer, setLoadingAnswer] = useState(false);
 
-  function handleClose() {
+  function handleClose () {
     onClose();
     setRecentSearches([]);
     setDocs(INITIAL_DOCS);
     setAnswer(INITIAL_ANSWER);
   }
 
-  async function handleSearchDocs(event: ChangeEvent<HTMLInputElement>) {
+  async function handleSearchDocs (event: ChangeEvent<HTMLInputElement>) {
     if (config.docSearch) {
       try {
         if (event.target.value) {
@@ -48,20 +54,20 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
     }
   }
 
-  function handleDocClick(doc: DocType) {
+  function handleDocClick (doc: DocType) {
     handleClose();
     if (!recentSearches.find(({ _id }) => _id == doc._id)) {
       setLocalStorageItem('recentSearches', [...recentSearches, doc]);
     }
   }
 
-  function handleDocDelete(doc: DocType) {
+  function handleDocDelete (doc: DocType) {
     const newRecentSearches = recentSearches.filter(({ _id }) => _id != doc._id)
     setRecentSearches(newRecentSearches);
     setLocalStorageItem('recentSearches', newRecentSearches);
   }
 
-  async function handleSearchAnswers(event: FormEvent<HTMLFormElement>) {
+  async function handleSearchAnswers (event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     try {
@@ -175,5 +181,3 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
     </Modal>
   )
 }
-
-export default SearchModal;

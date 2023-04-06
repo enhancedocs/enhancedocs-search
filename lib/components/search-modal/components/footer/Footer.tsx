@@ -1,7 +1,7 @@
 import Key from '../../../key/Key';
 import classes from './Footer.module.css';
 
-function Footer() {
+export default function Footer () {
   return (
     <footer className={classes.EnhancedSearch__SearchModal__Footer}>
       <div>
@@ -49,5 +49,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;
