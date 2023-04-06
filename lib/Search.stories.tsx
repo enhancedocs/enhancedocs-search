@@ -39,8 +39,8 @@ export const Example = Template.bind({});
 Example.args = {
   config: {
     enhancedSearch: {
-      projectId: '',
-      accessToken: 'pk_54cdfba3dfaeef6a7636976b03e6afc0930a336d9a0f33eb',
+      projectId: '642c2d009557653a6d46cdda',
+      accessToken: 'pk_c237abe4951408b069e6482ad7b4214ea7ce6901bf699dbe',
     },
     docSearch: {
       apiKey: 'VknaNXobIMS1DocvqohOZxDwfP4jqYO2',
