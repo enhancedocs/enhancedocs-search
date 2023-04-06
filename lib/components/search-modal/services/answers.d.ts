@@ -1,3 +1,5 @@
+import type { EnhancedSearchConfig } from '../../../Search.d';
+
 export type AnswerType = {
   _id: string;
   search: string;
@@ -6,7 +8,7 @@ export type AnswerType = {
 };
 
 export type GetAnswers = {
-  accessToken: string;
+  config: EnhancedSearchConfig;
   search: string;
 }
 

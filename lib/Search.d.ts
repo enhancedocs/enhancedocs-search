@@ -1,4 +1,5 @@
 export type EnhancedSearchConfig = {
+  projectId: string;
   accessToken: string;
 }
 

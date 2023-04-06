@@ -60,7 +60,7 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
       const search = formValues.search as string;
 
       if (search) {
-        const data = await getAnswers({ accessToken: config.enhancedSearch.accessToken, search });
+        const data = await getAnswers({ config: config.enhancedSearch, search });
         setAnswer({
           search,
           _id: data._id,
