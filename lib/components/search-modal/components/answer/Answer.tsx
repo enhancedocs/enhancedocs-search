@@ -1,16 +1,11 @@
 import { lazy, Suspense, useState } from 'react';
-import { AnswerType, answerFeedback } from '../../services/answers';
 import LinkIcon from '../../../icons/LinkIcon';
+import { answerFeedback } from '../../services/answers';
 import Feedback from './components/feedback/Feedback';
 import classes from './Answer.module.css';
+import type { AnswerProps } from './Answer.d';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
-
-type AnswerProps = {
-  accessToken: string;
-  answer: AnswerType;
-  loading?: boolean;
-}
 
 function Answer({ accessToken, answer, loading }: AnswerProps) {
   const [feedbackLoading, setFeedbackLoading] = useState(false);

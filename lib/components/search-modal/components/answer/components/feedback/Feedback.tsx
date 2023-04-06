@@ -1,19 +1,12 @@
 import CheckCircle from '../../../../../icons/CheckCircle';
-import DotStretching from './components/dot-stretching/DotStretching';
 import classes from './Feedback.module.css';
-
-type FeedbackProps = {
-  answerId: string;
-  onFeedback: Function;
-  loading?: boolean;
-  success?: boolean;
-}
+import type { FeedbackProps } from './Feedback.d';
 
 function Feedback({ answerId, onFeedback, loading, success }: FeedbackProps) {
   return loading
     ? (
       <div className={classes.EnhancedSearch__SearchModal__Feedback}>
-        <DotStretching />
+        <div className={classes.EnhancedSearch__DotStretching} />
       </div>
     ) : (
       <div className={classes.EnhancedSearch__SearchModal__Feedback}>

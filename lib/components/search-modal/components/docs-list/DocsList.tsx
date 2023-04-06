@@ -1,17 +1,12 @@
 import DocumentIcon from '../../../icons/DocumentIcon';
 import HashIcon from '../../../icons/HashIcon';
-import { DocType } from '../../services/docs';
 import classes from './DocsList.module.css';
+import type { DocsListProps } from './DocsList.d';
 
 const icons = {
   page: DocumentIcon,
   anchor: HashIcon
 };
-
-type DocsListProps = {
-  docs: Array<DocType>;
-  onClick?: Function;
-}
 
 function DocsList({ docs, onClick }: DocsListProps) {
   return (

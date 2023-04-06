@@ -38,10 +38,11 @@ const Template: ComponentStory<typeof Search> = (args) => {
 export const Example = Template.bind({});
 Example.args = {
   config: {
-    enhancedocs: {
-      accessToken: 'pk_54cdfba3dfaeef6a7636976b03e6afc0930a336d9a0f33eb',
+    enhancedSearch: {
+      projectId: '642c2d009557653a6d46cdda',
+      accessToken: 'pk_c237abe4951408b069e6482ad7b4214ea7ce6901bf699dbe',
     },
-    typesense: {
+    docSearch: {
       apiKey: 'VknaNXobIMS1DocvqohOZxDwfP4jqYO2',
       host: '824vz69qrn0af371p-1.a1.typesense.net',
       collection: 'ni61t27j9poqkf5bp_1680527568'

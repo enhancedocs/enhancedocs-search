@@ -1,34 +1,14 @@
 import { useState } from 'react';
-import classNames from './helpers/classnames';
+import { classNames } from './helpers/styles';
 import useKeyDown from './hooks/use-key-down';
 import CommandIcon from './components/icons/CommandIcon';
 import SearchIcon from './components/icons/SearchIcon';
 import Key from './components/key/Key';
 import SearchModal from './components/search-modal/SearchModal';
 import classes from './Search.module.css';
+import type { SearchProps } from './Search.d';
+
 import './global.css';
-
-export type EnhanceDocsConfig = {
-  accessToken: string;
-}
-
-export type TypesenseConfig = {
-  apiKey: string;
-  host: string;
-  collection: string;
-}
-
-export type Config = {
-  enhancedocs: EnhanceDocsConfig;
-  typesense?: TypesenseConfig;
-}
-
-type SearchProps = {
-  config: Config;
-  placeholder?: string;
-  size?: 'small' | 'middle' | 'large';
-  shape?: 'square' | 'round';
-}
 
 function Search({
   config,

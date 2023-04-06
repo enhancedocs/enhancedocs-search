@@ -1,20 +1,5 @@
 import Typesense from 'typesense';
-import type { TypesenseConfig } from '../../../Search';
-
-export type DocType = {
-  _id: string;
-  title: string;
-  description?: string;
-  url?: string;
-  type: 'page' | 'anchor'
-}
-
-export type DocsType = Array<DocType>;
-
-type GetDocs = {
-  config: TypesenseConfig;
-  search: string;
-}
+import type { GetDocs } from './docs.d';
 
 export const getDocs = async ({ config, search }: GetDocs) => {
   const client = new Typesense.Client({
