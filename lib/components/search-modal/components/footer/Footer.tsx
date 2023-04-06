@@ -6,7 +6,7 @@ function Footer() {
     <footer className={classes.EnhancedSearch__SearchModal__Footer}>
       <div>
         <div className={classes.EnhancedSearch__SearchModal__FooterKey}>
-          <Key>esc</Key>
+          <Key className={classes.EnhancedSearch__SearchModal__FooterCustomKey}>esc</Key>
           to close
         </div>
       </div>

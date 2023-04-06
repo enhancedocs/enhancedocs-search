@@ -155,7 +155,7 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
           )
         }
         {
-          (!loadingAnswer && !answer && !docs.length && !recentSearches.length)
+          (!loadingAnswer && !answer.answer && !docs.length && !recentSearches.length)
             ? (
               <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
                 <span>No recent searches</span>

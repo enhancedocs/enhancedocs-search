@@ -11,6 +11,10 @@
   display: none;
 }
 
+.EnhancedSearch__SearchModal__FooterCustomKey {
+  font-size: 10px;
+}
+
 .EnhancedSearch__SearchModal__FooterLogoContainer {
   display: flex;
   align-items: center;
