@@ -1,11 +1,6 @@
-import classNames from '../../helpers/classnames';
+import { classNames } from '../../helpers/styles';
 import classes from './Key.module.css';
-
-type KeyProps = {
-  children: React.ReactNode;
-  className?: string;
-  size?: 'small' | 'middle' | 'large';
-}
+import type { KeyProps } from './Key.d';
 
 function Key({ children, className, size = 'middle', ...props }: KeyProps) {
   return (
