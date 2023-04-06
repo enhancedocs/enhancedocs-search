@@ -36,8 +36,12 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
   async function handleSearchDocs(event: ChangeEvent<HTMLInputElement>) {
     if (config.docSearch) {
       try {
-        const { hits } = await getDocs({ config: config.docSearch, search: event.target.value });
-        setDocs(formatHits(hits));
+        if (event.target.value) {
+          const { hits } = await getDocs({ config: config.docSearch, search: event.target.value });
+          setDocs(formatHits(hits));
+        } else {
+          setDocs(INITIAL_DOCS);
+        }
       } catch (error) {
         console.error('Search docs', error);
       }
@@ -131,30 +135,32 @@ function SearchModal({ config, isOpen, onClose }: SearchModalProps) {
           loading={loadingAnswer}
         />
         {
-          docs.length
+          config.docSearch && (
+            docs.length
+              ? (
+                <>
+                  <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Results</p>
+                  <DocsList docs={docs} onClick={handleDocClick} />
+                </>
+              )
+              : (
+                recentSearches.length
+                  ? (
+                    <>
+                      <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Recent</p>
+                      <DocsList docs={recentSearches} />
+                    </>
+                  ) : null
+              )
+          )
+        }
+        {
+          (!loadingAnswer && !answer && !docs.length && !recentSearches.length)
             ? (
-              <>
-                <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Results</p>
-                <DocsList
-                  docs={docs}
-                  onClick={handleDocClick}
-                />
-              </>
-            )
-            : (
-              recentSearches.length
-                ? (
-                  <>
-                    <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Recent</p>
-                    <DocsList docs={recentSearches} />
-                  </>
-                )
-                : (
-                  <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
-                    <span>No recent searches</span>
-                  </div>
-                )
-            )
+              <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
+                <span>No recent searches</span>
+              </div>
+            ) : null
         }
         <Footer />
       </div>
