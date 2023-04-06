@@ -15,7 +15,6 @@
 
 .EnhancedSearch__SearchModal {
   position: absolute;
-  margin: 60px auto;
   height: 100%;
   max-height: 100%;
   width: 100%;
@@ -115,6 +114,7 @@
     min-height: 200px;
     max-height: calc(100vh - 120px);
     border-radius: 16px;
+    margin: 60px auto;
   }
 
   .EnhancedSearch__SearchModal__SearchContainer {
