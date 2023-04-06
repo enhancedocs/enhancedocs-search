@@ -6,7 +6,7 @@ import SearchIcon from './components/icons/SearchIcon';
 import Key from './components/key/Key';
 import SearchModal from './components/search-modal/SearchModal';
 import classes from './Search.module.css';
-import type { SearchProps } from './Search.d';
+import { SearchProps } from './Search.d';
 
 import './global.css';
 

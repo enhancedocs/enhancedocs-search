@@ -29,6 +29,11 @@
   line-height: 1px;
 }
 
+.EnhancedSearch__SearchModal__FooterLogo__Letters {
+  fill: var(--color-black);
+  stroke: var(--color-black);
+}
+
 @media (min-width: 600px) {
   .EnhancedSearch__SearchModal__FooterKey {
     display: flex;
