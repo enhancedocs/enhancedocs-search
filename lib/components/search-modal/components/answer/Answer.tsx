@@ -17,7 +17,7 @@ function Answer({ accessToken, answer, loading }: AnswerProps) {
       await answerFeedback({ accessToken, answerId, usefulFeedback });
       setFeedbackSuccess(true);
     } catch (error) {
-      console.error(error);
+      console.error('Feedback', error);
     } finally {
       setFeedbackLoading(false);
     }
