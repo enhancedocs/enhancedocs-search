@@ -1,14 +1,20 @@
+<h1 align="center" style="margin-top: 32px">
+  <a href="https://enhancedocs.com">
+    <img src="./public/logo-enhance-docs-small.png?raw=true" alt="EnhanceDocs">
+  </a>
+</h1>
+
+<div align="center">
+
+  [![npm version](https://img.shields.io/npm/v/enhancedocs-search.svg)](https://www.npmjs.com/package/enhancedocs-search)
+  [![Downloads](https://img.shields.io/npm/dm/enhancedocs-search.svg)](https://www.npmjs.com/package/enhancedocs-search)
+  [![License: MIT](https://img.shields.io/badge/license-Apache--2.0-yellow)](https://www.apache.org/licenses/LICENSE-2.0)
+  [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/enhancedocs.svg?style=social&label=Follow%20%40EnhanceDocs)](https://twitter.com/langchainai)
+  [![](https://dcbadge.vercel.app/api/server/AUDa3KZavw?compact=true&style=flat)](https://discord.com/invite/AUDa3KZavw)
+
+</div>
+
 # EnhanceDocs Search
-
-[![npm version](https://img.shields.io/npm/v/enhancedocs-search.svg)](https://www.npmjs.com/package/enhancedocs-search)
-[![Downloads](https://img.shields.io/npm/dm/enhancedocs-search.svg)](https://www.npmjs.com/package/enhancedocs-search)
-[![License: MIT](https://img.shields.io/badge/license-Apache--2.0-yellow)](https://www.apache.org/licenses/LICENSE-2.0)
- [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/enhancedocs.svg?style=social&label=Follow%20%40EnhanceDocs)](https://twitter.com/langchainai)
-[![](https://dcbadge.vercel.app/api/server/AUDa3KZavw?compact=true&style=flat)](https://discord.com/invite/AUDa3KZavw)
-
-<p align="center" style="margin-top: 50px; margin-bottom: 30px;">
-  <img src="./public/logo-enhance-docs-small.png?raw=true" alt="EnhanceDocs logo">
-</p>
 
 ## 📦 Installing
 

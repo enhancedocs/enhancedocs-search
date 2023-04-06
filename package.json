@@ -1,16 +1,21 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.0.40",
+  "version": "0.1.0",
   "license": "Apache-2.0",
   "author": "EnhanceDocs",
   "contributors": [
-    "playola <playolaizq@gmail.com>",
-    "Alw3ys <alw3ys@gmail.com>"
+    "playola <playolaizq@gmail.com> (https://github.com/playola)",
+    "Alw3ys <alw3ys@gmail.com> (https://github.com/Alw3ys)"
   ],
+  "homepage": "https://docs.enhancedocs.com",
   "repository": {
     "type": "git",
     "url": "git@github.com:enhancedocs/enhancedocs-search.git"
+  },
+  "bugs": {
+    "url" : "https://github.com/enhancedocs/enhancedocs-search/issues",
+    "email" : "playolaizq@gmail.com"
   },
   "type": "module",
   "files": [
