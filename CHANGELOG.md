@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.1.3] - 2023-04-06
 
-- 🐞 Fix logo colors in dark mode.
+- 🆕 Add and remove recent searches from local storage.
+- 🐞 Improve logo colors in dark mode.
+- 🛠 Unify export default and types exports.
 
 ## [0.1.2] - 2023-04-06
 
