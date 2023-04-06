@@ -6,6 +6,10 @@
  [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/enhancedocs.svg?style=social&label=Follow%20%40EnhanceDocs)](https://twitter.com/langchainai)
 [![](https://dcbadge.vercel.app/api/server/AUDa3KZavw?compact=true&style=flat)](https://discord.com/invite/AUDa3KZavw)
 
+<p align="center" style="margin-top: 50px; margin-bottom: 30px;">
+  <img src="./public/logo-enhance-docs-small.png?raw=true" alt="EnhanceDocs logo">
+</p>
+
 ## 📦 Installing
 
 ### Package manager
@@ -22,10 +26,14 @@ Using yarn:
 yarn add enhancedocs-search
 ```
 
+## Getting Started
+
+First you will need to create a project and a public key (`pk_`) in our [Discord Channel](https://discord.com/invite/AUDa3KZavw).
+Then you can install the package and start using it 🎉🎉
+
 ## 🚀 Usage
 
-First you will need to create a public key (`pk_`) in our [Discord channel](https://discord.com/invite/AUDa3KZavw).
-Then you can install the package and start using it 🎉🎉
+Use your public key to enable the **enhanced search** powered by AI:
 
 ```js
 import EnhancedSearch from 'enhancedocs-search';
@@ -34,8 +42,32 @@ import 'enhancedocs-search/dist/style.css';
 
 <EnhancedSearch
   config={{
-    enhancedocs: {
+    enhancedSearch: {
+      projectId: "abc123",
       accessToken: "pk_abc123"
+    }
+  }}
+  {...props}
+/>
+```
+
+Optionally, you can get **instant results** by configuring the documents search. See our [Discord Channel](https://discord.com/invite/AUDa3KZavw)
+
+```js
+import EnhancedSearch from 'enhancedocs-search';
+
+import 'enhancedocs-search/dist/style.css';
+
+<EnhancedSearch
+  config={{
+    enhancedSearch: {
+      projectId: "abc123",
+      accessToken: "pk_abc123"
+    },
+    docSearch: {
+      apiKey: 'abc123',
+      host: 'abc123-0.aa.docsearch.xxx',
+      collection: 'abc123'
     }
   }}
   {...props}
@@ -59,7 +91,8 @@ export default function SearchBarWrapper(props) {
   return (
     <EnhancedSearch
       config={{
-        enhancedocs: {
+        enhancedSearch: {
+          projectId: "abc123",
           accessToken: "pk_abc123"
         }
       }}
