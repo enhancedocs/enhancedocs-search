@@ -1,4 +1,4 @@
-export function formatHits(hits: any) {
+export function formatHits (hits: any) {
   return hits.map((hit: any) => {
     const { objectID, hierarchy, content, type, url } = hit.document;
     const hierarchyValues = Object.values(hierarchy).filter(Boolean);

@@ -1,8 +1,14 @@
 import CheckCircle from '../../../../../icons/CheckCircle';
 import classes from './Feedback.module.css';
-import type { FeedbackProps } from './Feedback.d';
 
-function Feedback({ answerId, onFeedback, loading, success }: FeedbackProps) {
+export type FeedbackProps = {
+  answerId: string;
+  onFeedback: Function;
+  loading?: boolean;
+  success?: boolean;
+}
+
+export default function Feedback ({ answerId, onFeedback, loading, success }: FeedbackProps) {
   return loading
     ? (
       <div className={classes.EnhancedSearch__SearchModal__Feedback}>
@@ -39,5 +45,3 @@ function Feedback({ answerId, onFeedback, loading, success }: FeedbackProps) {
       </div>
     );
 }
-
-export default Feedback;

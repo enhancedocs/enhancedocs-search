@@ -10,7 +10,7 @@ const ENHANCED_SEARCH_CONFIG = {
 const DOC_SEARCH_CONFIG = {
   apiKey: 'VknaNXobIMS1DocvqohOZxDwfP4jqYO2',
   host: '824vz69qrn0af371p-1.a1.typesense.net',
-  collection: 'ni61t27j9poqkf5bp_1680527568'
+  collection: 'ni61t27j9poqkf5bp_1680792126'
 };
 
 export default {

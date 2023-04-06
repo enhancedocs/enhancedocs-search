@@ -1,4 +1,4 @@
-import type { EnhancedSearchConfig } from '../../../Search.d';
+import type { EnhancedSearchConfig } from '../../../Search';
 
 export type AnswerType = {
   _id: string;

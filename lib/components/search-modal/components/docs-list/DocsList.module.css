@@ -11,10 +11,11 @@
   height: 56px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   border-radius: 8px;
   margin-bottom: 4px;
-  padding-left: 16px;
+  padding: 0 16px;
   cursor: pointer;
   color: var(--color-black);
   background-color: var(--color-white);
@@ -22,6 +23,30 @@
 }
 
 .EnhancedSearch__SearchModal__DocsListItem:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary-base);
+}
+
+.EnhancedSearch__SearchModal__DocsListItemButton {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border: none;
+  border-radius: 50%;
+  color: var(--color-black);
+  background: var(--color-white);
+  cursor: pointer;
+}
+
+.EnhancedSearch__SearchModal__DocsListItemButton:hover {
+  color: black !important;
+  background-color: white !important;
+}
+
+.EnhancedSearch__SearchModal__DocsListItem:hover .EnhancedSearch__SearchModal__DocsListItemButton {
   color: var(--color-white);
   background-color: var(--color-primary-base);
 }

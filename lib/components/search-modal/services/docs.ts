@@ -1,7 +1,7 @@
 import Typesense from 'typesense';
 import type { GetDocs } from './docs.d';
 
-export const getDocs = async ({ config, search }: GetDocs) => {
+export async function getDocs ({ config, search }: GetDocs) {
   const client = new Typesense.Client({
     nodes: [
       {

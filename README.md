@@ -32,12 +32,12 @@ Using yarn:
 yarn add enhancedocs-search
 ```
 
-## Getting Started
+## 🚀 Usage
+
+### Getting Started
 
 First you will need to create a project and a public key (`pk_`) in our [Discord Channel](https://discord.com/invite/AUDa3KZavw).
 Then you can install the package and start using it 🎉🎉
-
-## 🚀 Usage
 
 Use your public key to enable the **enhanced search** powered by AI:
 
