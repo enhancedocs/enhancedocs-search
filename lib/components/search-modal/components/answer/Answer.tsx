@@ -73,18 +73,31 @@ export default function Answer ({ accessToken, answer, loading }: AnswerProps) {
                     Summary generated from the following sources:
                   </p>
                   <div>
-                    {answer.sources.map((source, index) => {
-                      return (
-                        <a
-                          key={`source-${index}`}
-                          className={classes.EnhancedSearch__SearchModal__ResultSourceItem}
-                          href={source}
-                        >
-                          <LinkIcon />
-                          {source}
-                        </a>
-                      );
-                    })}
+                    {
+                      answer.sources.map((source, index) => {
+                        const urlParts = source.split('/');
+                        const label = (urlParts[urlParts.length - 1] || source)
+                          .split(/[-_]/)
+                          .map(word => word.replace(word[0], word[0].toUpperCase()))
+                          .join(' ');
+
+                        return (
+                          <a
+                            key={`source-${index}`}
+                            className={classes.EnhancedSearch__SearchModal__ResultSourceItem}
+                            href={source}
+                          >
+                            <div className={classes.EnhancedSearch__SearchModal__ResultSourceItemLabel}>
+                              <LinkIcon />
+                              {label}
+                            </div>
+                            <span className={classes.EnhancedSearch__SearchModal__ResultSourceItemSource}>
+                              {source}
+                            </span>
+                          </a>
+                        );
+                      })
+                    }
                   </div>
                 </div>
               </div>
