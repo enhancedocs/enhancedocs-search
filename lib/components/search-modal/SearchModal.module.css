@@ -38,6 +38,7 @@
   gap: 8px;
   padding: 16px;
   border-bottom: 1px solid var(--color-neutral-lighten2);
+  border-radius: 16px 16px 0 0;
   font-size: 24px;
 }
 
@@ -128,6 +129,10 @@
 
   .EnhancedSearch__SearchModal__SearchIcon {
     display: block;
+  }
+
+  .EnhancedSearch__SearchModal__InnerBody {
+    height: auto;
   }
 }
 

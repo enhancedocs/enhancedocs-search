@@ -143,39 +143,41 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
       </form>
 
       <div className={classes.EnhancedSearch__SearchModal__InnerBody}>
-        <Answer
-          accessToken={config.enhancedSearch.accessToken}
-          answer={answer}
-          loading={loadingAnswer}
-        />
-        {
-          config.docSearch && (
-            docs.length
+        <section>
+          <Answer
+            accessToken={config.enhancedSearch.accessToken}
+            answer={answer}
+            loading={loadingAnswer}
+          />
+          {
+            config.docSearch && (
+              docs.length
+                ? (
+                  <div>
+                    <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Results</p>
+                    <DocsList docs={docs} onClick={handleDocClick} />
+                  </div>
+                )
+                : (
+                  recentSearches.length
+                    ? (
+                      <div>
+                        <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Recent</p>
+                        <DocsList docs={recentSearches} onDelete={handleDocDelete} />
+                      </div>
+                    ) : null
+                )
+            )
+          }
+          {
+            (!loadingAnswer && !answer.answer && !docs.length && !recentSearches.length)
               ? (
-                <>
-                  <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Results</p>
-                  <DocsList docs={docs} onClick={handleDocClick} />
-                </>
-              )
-              : (
-                recentSearches.length
-                  ? (
-                    <>
-                      <p className={classes.EnhancedSearch__SearchModal__DocsTitle}>Recent</p>
-                      <DocsList docs={recentSearches} onDelete={handleDocDelete} />
-                    </>
-                  ) : null
-              )
-          )
-        }
-        {
-          (!loadingAnswer && !answer.answer && !docs.length && !recentSearches.length)
-            ? (
-              <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
-                <span>No recent searches</span>
-              </div>
-            ) : null
-        }
+                <div className={classes.EnhancedSearch__SearchModal__EmptySearch}>
+                  <span>No recent searches</span>
+                </div>
+              ) : null
+          }
+        </section>
         <Footer />
       </div>
     </Modal>
