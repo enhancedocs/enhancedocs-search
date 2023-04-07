@@ -66,7 +66,7 @@
 
 .EnhancedSearch__SearchModal__ResultSourceItem {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 8px;
   background: var(--color-white);
   margin: 8px;
@@ -80,6 +80,17 @@
 
 .EnhancedSearch__SearchModal__ResultSourceItem:hover {
   text-decoration: underline;
+}
+
+.EnhancedSearch__SearchModal__ResultSourceItemLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.EnhancedSearch__SearchModal__ResultSourceItemSource {
+  color: var(--color-neutral-darken2);
+  overflow: hidden;
 }
 
 .EnhancedSearch__SearchModal__EmptySearch {
