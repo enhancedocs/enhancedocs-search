@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.4] - 2023-04-07
+
+- 🆕 Improved source url card information.
+- 🐞 Browser compatibility styling.
+- 🐞 Large source url overflow.
+
 ## [0.1.3] - 2023-04-06
 
 - 🆕 Add and remove recent searches from local storage.
