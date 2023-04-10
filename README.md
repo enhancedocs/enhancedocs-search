@@ -107,3 +107,26 @@ export default function SearchBarWrapper(props) {
   );
 }
 ```
+
+### Custom Theming
+
+Set up your preferred primary color configuring the theme:
+
+```js
+import EnhancedSearch from 'enhancedocs-search';
+
+import 'enhancedocs-search/dist/style.css';
+
+<EnhancedSearch
+  config={{
+    enhancedSearch: {
+      projectId: "abc123",
+      accessToken: "pk_abc123"
+    }
+  }}
+  theme={{
+    primaryColor: 'red'
+  }}
+  {...props}
+/>
+```
