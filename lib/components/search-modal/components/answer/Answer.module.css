@@ -86,11 +86,13 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  font-weight: 500;
 }
 
 .EnhancedSearch__SearchModal__ResultSourceItemSource {
   color: var(--color-neutral-darken2);
   overflow: hidden;
+  line-height: 1;
 }
 
 .EnhancedSearch__SearchModal__EmptySearch {

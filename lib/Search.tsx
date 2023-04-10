@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { classNames } from './helpers/styles';
+import { useEffect, useState } from 'react';
+import { classNames, setGlobalColor } from './helpers/styles';
 import useKeyDown from './hooks/use-key-down';
 import CommandIcon from './components/icons/CommandIcon';
 import SearchIcon from './components/icons/SearchIcon';
@@ -24,18 +24,24 @@ export type Config = {
   docSearch?: DocSearch;
 }
 
+export type Theme = {
+  primaryColor?: string;
+}
+
 export type SearchProps = {
   config: Config;
   placeholder?: string;
   size?: 'small' | 'middle' | 'large';
   shape?: 'square' | 'round';
+  theme?: Theme;
 }
 
 export default function Search ({
   config,
   placeholder = 'Search',
   size = 'middle',
-  shape = 'round'
+  shape = 'round',
+  theme
 }: SearchProps) {
   const [searchModal, setSearchModal] = useState(false);
 
@@ -48,6 +54,12 @@ export default function Search ({
   }
 
   useKeyDown(openSearchModal);
+
+  useEffect(() => {
+    if (theme?.primaryColor) {
+      setGlobalColor('--color-primary-base', theme.primaryColor);
+    }
+  }, []);
 
   return (
     <>
