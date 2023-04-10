@@ -62,7 +62,7 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
   }
 
   function handleDocDelete (doc: DocType) {
-    const newRecentSearches = recentSearches.filter(({ _id }) => _id != doc._id)
+    const newRecentSearches = recentSearches.filter(({ _id }) => _id != doc._id);
     setRecentSearches(newRecentSearches);
     setLocalStorageItem('recentSearches', newRecentSearches);
   }
@@ -181,5 +181,5 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
         <Footer />
       </div>
     </Modal>
-  )
+  );
 }

@@ -19,7 +19,7 @@ export default {
 } as ComponentMeta<typeof Search>;
 
 const Template: ComponentStory<typeof Search> = (args) => {
-  const [currentTheme, setCurrentTheme] = useState('light')
+  const [currentTheme, setCurrentTheme] = useState('light');
 
   function toggleMode() {
     if (currentTheme == 'light') {
