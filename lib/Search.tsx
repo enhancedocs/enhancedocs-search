@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { classNames, setGlobalColor } from './helpers/styles';
 import useKeyDown from './hooks/use-key-down';
+import useCustomTheme from './hooks/use-custom-theme';
 import CommandIcon from './components/icons/CommandIcon';
 import SearchIcon from './components/icons/SearchIcon';
 import Key from './components/key/Key';
@@ -53,13 +54,8 @@ export default function Search ({
     setSearchModal(false);
   }
 
+  useCustomTheme(theme);
   useKeyDown(openSearchModal);
-
-  useEffect(() => {
-    if (theme?.primaryColor) {
-      setGlobalColor('--color-primary-base', theme.primaryColor);
-    }
-  }, []);
 
   return (
     <>
