@@ -1,7 +1,7 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "Apache-2.0",
   "author": "EnhanceDocs",
   "contributors": [
@@ -14,8 +14,8 @@
     "url": "git@github.com:enhancedocs/enhancedocs-search.git"
   },
   "bugs": {
-    "url" : "https://github.com/enhancedocs/enhancedocs-search/issues",
-    "email" : "playolaizq@gmail.com"
+    "url": "https://github.com/enhancedocs/enhancedocs-search/issues",
+    "email": "playolaizq@gmail.com"
   },
   "type": "module",
   "files": [
@@ -32,6 +32,8 @@
   "types": "./dist/types/index.d.ts",
   "scripts": {
     "start": "start-storybook -p 6006",
+    "lint": "eslint 'lib/**/*.{js,jsx,ts,tsx}'",
+    "lint-fix": "eslint 'lib/**/*.{js,jsx,ts,tsx}' --fix",
     "build-docs": "build-storybook",
     "build-tsc": "tsc --project tsconfig.build.json",
     "build-vite": "vite build",
@@ -59,8 +61,12 @@
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@types/react-modal": "^3.13.1",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^3.1.0",
     "babel-loader": "^8.3.0",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.9.3",

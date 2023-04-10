@@ -19,7 +19,7 @@ export default {
 } as ComponentMeta<typeof Search>;
 
 const Template: ComponentStory<typeof Search> = (args) => {
-  const [currentTheme, setCurrentTheme] = useState('light')
+  const [currentTheme, setCurrentTheme] = useState('light');
 
   function toggleMode() {
     if (currentTheme == 'light') {
@@ -58,5 +58,15 @@ EnhancedAndDocSearch.args = {
   config: {
     enhancedSearch: ENHANCED_SEARCH_CONFIG,
     docSearch: DOC_SEARCH_CONFIG
+  }
+};
+
+export const CustomTheme = Template.bind({});
+CustomTheme.args = {
+  config: {
+    enhancedSearch: ENHANCED_SEARCH_CONFIG
+  },
+  theme: {
+    primaryColor: '#bdbe22'
   }
 };

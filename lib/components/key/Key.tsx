@@ -21,5 +21,5 @@ export default function Key ({ children, className, size = 'middle', ...props }:
     >
       {children}
     </div>
-  )
+  );
 }

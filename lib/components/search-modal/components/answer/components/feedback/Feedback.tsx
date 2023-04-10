@@ -1,9 +1,14 @@
 import CheckCircle from '../../../../../icons/CheckCircle';
 import classes from './Feedback.module.css';
 
+export type OnFeedbackType = {
+  answerId: string;
+  usefulFeedback: boolean;
+}
+
 export type FeedbackProps = {
   answerId: string;
-  onFeedback: Function;
+  onFeedback: ({ answerId, usefulFeedback }: OnFeedbackType) => {};
   loading?: boolean;
   success?: boolean;
 }

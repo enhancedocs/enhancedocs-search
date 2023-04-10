@@ -4,6 +4,7 @@ import { answerFeedback } from '../../services/answers';
 import type { AnswerType } from '../../services/answers.d';
 import Feedback from './components/feedback/Feedback';
 import classes from './Answer.module.css';
+import type { OnFeedbackType } from './components/feedback/Feedback';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
 
@@ -17,7 +18,7 @@ export default function Answer ({ accessToken, answer, loading }: AnswerProps) {
   const [feedbackLoading, setFeedbackLoading] = useState(false);
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
-  async function handleFeedback ({ answerId, usefulFeedback }: { answerId: string, usefulFeedback: boolean }) {
+  async function handleFeedback ({ answerId, usefulFeedback }: OnFeedbackType) {
     try {
       setFeedbackLoading(true);
       await answerFeedback({ accessToken, answerId, usefulFeedback });
@@ -108,5 +109,5 @@ export default function Answer ({ accessToken, answer, loading }: AnswerProps) {
               </div>
             )
         ) : null
-  )
+  );
 }

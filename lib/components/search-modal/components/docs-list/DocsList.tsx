@@ -64,9 +64,9 @@ export default function DocsList ({ docs, onClick, onDelete }: DocsListProps) {
                 )}
               </li>
             </a>
-          )
+          );
         })}
       </ul>
     ) : null
-  )
+  );
 }
