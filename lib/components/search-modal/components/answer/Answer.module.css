@@ -36,7 +36,7 @@
 
 .EnhancedSearch__SearchModal__ResultAnswerCode {
   display: block;
-  background: var(--color-neutral-lighten2);
+  background: var(--enhancedocs-neutral-lighten2);
   padding: 8px;
   border-radius: 4px;
   overflow-x: scroll;
@@ -44,7 +44,7 @@
 
 .EnhancedSearch__SearchModal__ResultAnswerLink {
   text-decoration: auto;
-  color: var(--color-primary-base);
+  color: var(--enhancedocs-primary-base);
 }
 
 .EnhancedSearch__SearchModal__ResultAnswerLink:hover {
@@ -52,8 +52,8 @@
 }
 
 .EnhancedSearch__SearchModal__ResultSources {
-  border-top: 1px solid var(--color-neutral-lighten2);
-  border-bottom: 1px solid var(--color-neutral-lighten2);
+  border-top: 1px solid var(--enhancedocs-neutral-lighten2);
+  border-bottom: 1px solid var(--enhancedocs-neutral-lighten2);
   margin: 32px 0;
   padding: 32px 0;
   animation: fadeInDown .8s ease-in;
@@ -68,12 +68,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  background: var(--color-white);
+  background: var(--enhancedocs-white);
   margin: 8px;
   padding: 8px;
   border-radius: 16px;
   text-decoration: auto;
-  color: var(--color-primary-base);
+  color: var(--enhancedocs-primary-base);
   font-size: 14px;
   box-shadow: inset 0 -1px 0 0 rgb(190 206 237), inset 0 0 1px 1px #fff, 0 1px 2px 0px rgb(190 206 237 / 90%);
 }
@@ -90,13 +90,13 @@
 }
 
 .EnhancedSearch__SearchModal__ResultSourceItemSource {
-  color: var(--color-neutral-darken2);
+  color: var(--enhancedocs-neutral-darken2);
   overflow: hidden;
   line-height: 1;
 }
 
 .EnhancedSearch__SearchModal__EmptySearch {
-  color: var(--color-neutral-darken3);
+  color: var(--enhancedocs-neutral-darken3);
   text-align: center;
   padding: 32px;
 }

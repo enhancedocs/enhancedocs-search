@@ -5,7 +5,7 @@ import type { Theme } from '../Search';
 export default function useCustomTheme (theme?: Theme) {
   useEffect(() => {
     if (theme?.primaryColor) {
-      setGlobalColor('--color-primary-base', theme.primaryColor);
+      setGlobalColor('--enhancedocs-primary-base', theme.primaryColor);
     }
   }, []);
 }

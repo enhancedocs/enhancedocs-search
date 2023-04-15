@@ -1,7 +1,7 @@
 .ReactModal__Overlay {
   z-index: 999;
   opacity: 0;
-  background-color: rgba(var(--color-black-rgb), 0.3) !important;
+  background-color: rgba(var(--enhancedocs-black-rgb), 0.3) !important;
   transition: opacity 200ms ease-in-out;
 }
 
@@ -20,7 +20,7 @@
   width: 100%;
   max-width: 100%;
   border-radius: 0;
-  background: var(--color-white);
+  background: var(--enhancedocs-white);
   overflow: auto;
   border: none;
   outline: none;
@@ -31,13 +31,13 @@
 .EnhancedSearch__SearchModal__InputContainer {
   position: sticky;
   top: 0;
-  background: var(--color-white);
-  color: var(--color-neutral-darken3);
+  background: var(--enhancedocs-white);
+  color: var(--enhancedocs-neutral-darken3);
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 16px;
-  border-bottom: 1px solid var(--color-neutral-lighten2);
+  border-bottom: 1px solid var(--enhancedocs-neutral-lighten2);
   border-radius: 16px 16px 0 0;
   font-size: 24px;
 }
@@ -52,8 +52,8 @@
   border: 0;
   outline: 0;
   font-size: 16px;
-  color: var(--color-black);
-  background: var(--color-white);
+  color: var(--enhancedocs-black);
+  background: var(--enhancedocs-white);
 }
 
 .EnhancedSearch__SearchModal__SubmitButtonKey {
@@ -76,7 +76,7 @@
 }
 
 .EnhancedSearch__SearchModal__SubmitButton:hover {
-  background: var(--color-neutral-lighten2);
+  background: var(--enhancedocs-neutral-lighten2);
 }
 
 .EnhancedSearch__SearchModal__InnerBody {
@@ -85,8 +85,8 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
-  color: var(--color-black);
-  background: var(--color-neutral-lighten3);
+  color: var(--enhancedocs-black);
+  background: var(--enhancedocs-neutral-lighten3);
 }
 
 .EnhancedSearch__SearchModal__SearchIcon {
@@ -94,7 +94,7 @@
 }
 
 .EnhancedSearch__SearchModal__DocsTitle {
-  color: var(--color-primary-base);
+  color: var(--enhancedocs-primary-base);
   font-size: 14px;
   font-weight: 600;
   margin-top: 0;
@@ -102,7 +102,7 @@
 }
 
 .EnhancedSearch__SearchModal__EmptySearch {
-  color: var(--color-neutral-darken3);
+  color: var(--enhancedocs-neutral-darken3);
   text-align: center;
   padding: 32px;
 }

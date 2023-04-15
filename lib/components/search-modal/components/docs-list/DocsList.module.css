@@ -17,14 +17,14 @@
   margin-bottom: 4px;
   padding: 0 16px;
   cursor: pointer;
-  color: var(--color-black);
-  background-color: var(--color-white);
+  color: var(--enhancedocs-black);
+  background-color: var(--enhancedocs-white);
   box-shadow: inset 0 -1px 0 0 rgb(190 206 237), inset 0 0 1px 1px #fff, 0 1px 2px 0px rgb(190 206 237 / 90%);
 }
 
 .EnhancedSearch__SearchModal__DocsListItem:hover {
-  color: var(--color-white);
-  background-color: var(--color-primary-base);
+  color: var(--enhancedocs-white);
+  background-color: var(--enhancedocs-primary-base);
 }
 
 .EnhancedSearch__SearchModal__DocsListItemButton {
@@ -36,8 +36,8 @@
   outline: none;
   border: none;
   border-radius: 50%;
-  color: var(--color-black);
-  background: var(--color-white);
+  color: var(--enhancedocs-black);
+  background: var(--enhancedocs-white);
   cursor: pointer;
 }
 
@@ -47,8 +47,8 @@
 }
 
 .EnhancedSearch__SearchModal__DocsListItem:hover .EnhancedSearch__SearchModal__DocsListItemButton {
-  color: var(--color-white);
-  background-color: var(--color-primary-base);
+  color: var(--enhancedocs-white);
+  background-color: var(--enhancedocs-primary-base);
 }
 
 .EnhancedSearch__SearchModal__DocsListItemIcon {
@@ -71,10 +71,10 @@
 
 .EnhancedSearch__SearchModal__DocsListItemIcon,
 .EnhancedSearch__SearchModal__DocsListItemDescription {
-  color: var(--color-neutral-darken1);
+  color: var(--enhancedocs-neutral-darken1);
 }
 
 .EnhancedSearch__SearchModal__DocsListItem:hover .EnhancedSearch__SearchModal__DocsListItemIcon,
 .EnhancedSearch__SearchModal__DocsListItem:hover .EnhancedSearch__SearchModal__DocsListItemDescription {
-  color: var(--color-neutral-lighten2);
+  color: var(--enhancedocs-neutral-lighten2);
 }
