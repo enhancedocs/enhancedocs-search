@@ -10,7 +10,7 @@
 }
 
 .EnhancedSearch__SearchModal__FeedbackSuccess svg {
-  color: var(--color-success-base);
+  color: var(--enhancedocs-success-base);
 }
 
 .EnhancedSearch__SearchModal__FeedbackTitle {
@@ -22,16 +22,16 @@
   border: none;
   outline: none;
   border-radius: 16px;
-  color: var(--color-black);
-  background: var(--color-white);
+  color: var(--enhancedocs-black);
+  background: var(--enhancedocs-white);
   margin-right: 8px;
   padding: 6px 10px;
   cursor: pointer;
-  box-shadow: inset 0 -1px 0 0 rgb(190 206 237), inset 0 0 1px 1px var(--color-white), 0 1px 2px 0px rgb(190 206 237 / 90%);
+  box-shadow: inset 0 -1px 0 0 rgb(190 206 237), inset 0 0 1px 1px var(--enhancedocs-white), 0 1px 2px 0px rgb(190 206 237 / 90%);
 }
 
 .EnhancedSearch__SearchModal__FeedbackButton:hover {
-  background: var(--color-neutral-lighten2);
+  background: var(--enhancedocs-neutral-lighten2);
   box-shadow: none;
 }
 
@@ -40,8 +40,8 @@
   width: 8px;
   height: 8px;
   border-radius: 5px;
-  background-color: var(--color-primary-base);
-  color: var(--color-primary-base);
+  background-color: var(--enhancedocs-primary-base);
+  color: var(--enhancedocs-primary-base);
   transform: scale(1.25, 1.25);
   margin: 0px 16px;
   animation: stretching 1s infinite ease-in;
@@ -59,8 +59,8 @@
   width: 8px;
   height: 8px;
   border-radius: 5px;
-  background-color: var(--color-primary-base);
-  color: var(--color-primary-base);
+  background-color: var(--enhancedocs-primary-base);
+  color: var(--enhancedocs-primary-base);
   animation: stretching-before 1s infinite ease-in;
 }
 
@@ -68,8 +68,8 @@
   width: 8px;
   height: 8px;
   border-radius: 5px;
-  background-color: var(--color-primary-base);
-  color: var(--color-primary-base);
+  background-color: var(--enhancedocs-primary-base);
+  color: var(--enhancedocs-primary-base);
   animation: stretching-after 1s infinite ease-in;
 }
 
