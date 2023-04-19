@@ -145,7 +145,7 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
       <div className={classes.EnhancedSearch__SearchModal__InnerBody}>
         <section>
           <Answer
-            accessToken={config.enhancedSearch.accessToken}
+            config={config.enhancedSearch}
             answer={answer}
             loading={loadingAnswer}
           />
