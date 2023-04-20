@@ -12,6 +12,7 @@ import './global.css';
 export type EnhancedSearchConfig = {
   projectId: string;
   accessToken: string;
+  apiBaseURL: string;
 }
 
 export type DocSearch = {

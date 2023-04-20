@@ -5,23 +5,24 @@ import type { AnswerType } from '../../services/answers.d';
 import Feedback from './components/feedback/Feedback';
 import classes from './Answer.module.css';
 import type { OnFeedbackType } from './components/feedback/Feedback';
+import { EnhancedSearchConfig } from '../../../../Search';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
 
 type AnswerProps = {
-  accessToken: string;
+  config: EnhancedSearchConfig;
   answer: AnswerType;
   loading?: boolean;
 }
 
-export default function Answer ({ accessToken, answer, loading }: AnswerProps) {
+export default function Answer ({ config, answer, loading }: AnswerProps) {
   const [feedbackLoading, setFeedbackLoading] = useState(false);
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
   async function handleFeedback ({ answerId, usefulFeedback }: OnFeedbackType) {
     try {
       setFeedbackLoading(true);
-      await answerFeedback({ accessToken, answerId, usefulFeedback });
+      await answerFeedback({ answerId, usefulFeedback, config });
       setFeedbackSuccess(true);
     } catch (error) {
       console.error('Feedback', error);

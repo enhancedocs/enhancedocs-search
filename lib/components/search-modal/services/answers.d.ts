@@ -13,7 +13,7 @@ export type GetAnswers = {
 }
 
 export type AnswerFeedbackType = {
-  accessToken: string;
   answerId: string;
   usefulFeedback: boolean;
+  config: EnhancedSearchConfig;
 }
