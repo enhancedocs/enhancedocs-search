@@ -11,7 +11,7 @@ function appendGlobalStyles() {
   document.head.appendChild(linkElement);
 }
 
-export function renderEnhancedSearch(elementId: string, props: SearchProps) {
+export function renderSearch(elementId: string, props: SearchProps) {
   const domNode = document.getElementById(elementId);
   if (domNode) {
     const root = createRoot(domNode);

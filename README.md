@@ -154,9 +154,9 @@ import 'enhancedocs-search/dist/style.css';
 Reference to any HTML element by ID (e.g.: `<div id="enhancedocs-search"></div>`):
 
 ```js
-import { renderEnhancedSearch } from './enhancedocs-search';
+import { renderSearch } from './enhancedocs-search';
 
-renderEnhancedSearch('enhancedocs-search', {
+renderSearch('enhancedocs-search', {
   config: {
     enhancedSearch: {
       projectId: 'abc123',
@@ -177,7 +177,7 @@ function loadScript(src, onLoadCallback) {
 }
 
 function onLoadCallback() {
-  EnhancedocsSearch.renderEnhancedSearch('enhancedocs-search', {
+  EnhancedocsSearch.renderSearch('enhancedocs-search', {
     config: {
       enhancedSearch: {
         projectId: 'abc123',

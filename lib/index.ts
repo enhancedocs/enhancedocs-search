@@ -1,2 +1,2 @@
 export { default } from './Search';
-export { renderEnhancedSearch } from './render-search';
+export { renderSearch } from './render-search';
