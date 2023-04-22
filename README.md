@@ -130,3 +130,62 @@ import 'enhancedocs-search/dist/style.css';
   {...props}
 />
 ```
+
+### Use it on any Vanilla project
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla project</title>
+  </head>
+  <body>
+    <div id="enhancedocs-search"></div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
+```
+
+#### Option 1: Install the NPM package and use the render helper:
+
+Reference to any HTML element by ID (e.g.: `<div id="enhancedocs-search"></div>`):
+
+```js
+import { renderEnhancedSearch } from './enhancedocs-search';
+
+renderEnhancedSearch('enhancedocs-search', {
+  config: {
+    enhancedSearch: {
+      projectId: 'abc123',
+      accessToken: 'pk_abc123'
+    }
+  }
+});
+```
+
+#### Option 2: Load the package as script and use the render helper:
+
+```js
+function loadScript(src, onLoadCallback) {
+  const script = document.createElement('script');
+  script.src = src;
+  script.onload = onLoadCallback;
+  document.head.appendChild(script);
+}
+
+function onLoadCallback() {
+  EnhancedocsSearch.renderEnhancedSearch('enhancedocs-search', {
+    config: {
+      enhancedSearch: {
+        projectId: 'abc123',
+        accessToken: 'pk_abc123'
+      }
+    }
+  });
+}
+
+loadScript('https://unpkg.com/enhancedocs-search@latest/dist/enhancedocs-search.umd.cjs', onLoadCallback);
+```
