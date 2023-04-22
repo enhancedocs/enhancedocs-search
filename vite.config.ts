@@ -13,12 +13,13 @@ export default defineConfig({
   },
   build: {
     lib: {
-      name: 'enhancedocs-search',
+      name: 'EnhancedocsSearch',
       entry: './lib/index.ts'
     },
     rollupOptions: {
       external: ['react'],
       output: {
+        exports:'named',
         globals: {
           react: 'React'
         }
