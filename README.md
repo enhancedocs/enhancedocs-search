@@ -57,29 +57,6 @@ import 'enhancedocs-search/dist/style.css';
 />
 ```
 
-Optionally, you can get **instant results** by configuring the documents search. See our [Discord Channel](https://discord.com/invite/AUDa3KZavw)
-
-```js
-import EnhancedSearch from 'enhancedocs-search';
-
-import 'enhancedocs-search/dist/style.css';
-
-<EnhancedSearch
-  config={{
-    enhancedSearch: {
-      projectId: "abc123",
-      accessToken: "pk_abc123"
-    },
-    docSearch: {
-      apiKey: 'abc123',
-      host: 'abc123-0.aa.docsearch.xxx',
-      collection: 'abc123'
-    }
-  }}
-  {...props}
-/>
-```
-
 ### Docusaurus Example
 
 Configure [Docusaurus](https://docusaurus.io/) theme to use your own search.

@@ -15,15 +15,8 @@ export type EnhancedSearchConfig = {
   apiBaseURL?: string;
 }
 
-export type DocSearch = {
-  apiKey: string;
-  host: string;
-  collection: string;
-}
-
 export type Config = {
   enhancedSearch: EnhancedSearchConfig;
-  docSearch?: DocSearch;
 }
 
 export type Theme = {
