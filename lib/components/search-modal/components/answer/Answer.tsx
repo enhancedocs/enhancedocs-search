@@ -16,18 +16,14 @@ type AnswerProps = {
 }
 
 export default function Answer ({ config, answer, loading }: AnswerProps) {
-  const [feedbackLoading, setFeedbackLoading] = useState(false);
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
   async function handleFeedback ({ answerId, usefulFeedback }: OnFeedbackType) {
     try {
-      setFeedbackLoading(true);
       await answerFeedback({ answerId, usefulFeedback, config });
       setFeedbackSuccess(true);
     } catch (error) {
       console.error('Feedback', error);
-    } finally {
-      setFeedbackLoading(false);
     }
   }
 
@@ -64,9 +60,8 @@ export default function Answer ({ config, answer, loading }: AnswerProps) {
                 </Suspense>
 
                 <Feedback
-                  answerId={answer._id}
+                  answerId={answer.answerId}
                   onFeedback={handleFeedback}
-                  loading={feedbackLoading}
                   success={feedbackSuccess}
                 />
 
@@ -78,7 +73,7 @@ export default function Answer ({ config, answer, loading }: AnswerProps) {
                     {
                       answer.sources.map((source, index) => {
                         const urlParts = source.split('/');
-                        const label = (urlParts[urlParts.length - 1] || source)
+                        const label = (urlParts ? urlParts[urlParts.length - 1] : source)
                           .split(/[-_]/)
                           .map(word => word.replace(word[0], word[0].toUpperCase()))
                           .join(' ');

@@ -8,9 +8,12 @@ export function getAnswers ({ config, search }: GetAnswers): Promise<AnswerType>
 }
 
 export function answerFeedback ({ answerId, usefulFeedback, config }: AnswerFeedbackType) {
-  return new Promise((resolve) => setTimeout(resolve, 500));
   return Post(`/answers/${answerId}`, config, {
-    headers: { Authorization: `Bearer ${config.accessToken}` },
-    body: { usefulFeedback }
+    headers: {
+      Authorization: `Bearer ${config.accessToken}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ useful_feedback: usefulFeedback })
   });
 }
