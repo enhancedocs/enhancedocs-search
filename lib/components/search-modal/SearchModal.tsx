@@ -11,12 +11,12 @@ import { getAnswers } from './services/answers';
 import classes from './SearchModal.module.css';
 import type { AnswerType } from './services/answers.d';
 
-const INITIAL_ANSWER = { _id: '', search: '', answer: '', sources: [] };
+const INITIAL_ANSWER = { answerId: '', search: '', answer: '', sources: [] };
 
 type SearchModalProps = {
   config: Config;
   isOpen: boolean;
-  onClose?: any;
+  onClose?: () => void;
 }
 
 export default function SearchModal ({ config, isOpen, onClose }: SearchModalProps) {
@@ -25,7 +25,7 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
   const [loadingAnswer, setLoadingAnswer] = useState(false);
 
   function handleClose () {
-    onClose();
+    if (onClose) onClose();
     setAnswer(INITIAL_ANSWER);
   }
 
@@ -43,7 +43,7 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
         const data = await getAnswers({ config: config.enhancedSearch, search });
         setAnswer({
           search,
-          _id: data._id,
+          answerId: data.answerId,
           answer: data.answer,
           sources: data.sources
         });

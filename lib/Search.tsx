@@ -49,7 +49,7 @@ export default function Search ({
   }
 
   useCustomTheme(theme);
-  useKeyDown(openSearchModal);
+  useKeyDown('k', openSearchModal);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import type { EnhancedSearchConfig } from '../../../Search';
 
 export type AnswerType = {
-  _id: string;
+  answerId: string;
   search: string;
   answer: string;
   sources: Array<string>;
