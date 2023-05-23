@@ -72,40 +72,37 @@ export default function Answer ({ config, answer, loading }: AnswerProps) {
                 }
 
                 {
-                  Boolean(answer.sources?.length) && (
-                    <div className={classes.EnhancedSearch__SearchModal__ResultSources}>
-                      <p className={classes.EnhancedSearch__SearchModal__ResultSourcesTitle}>
-                        Summary generated from the following sources:
-                      </p>
-                      <div>
-                        {
-                          answer.sources.map((source, index) => {
-                            const urlParts = source.split('/');
-                            const label = (urlParts ? urlParts[urlParts.length - 1] : source)
-                              .split(/[-_]/)
-                              .map(word => word.replace(word[0], word[0].toUpperCase()))
-                              .join(' ');
+                  answer.sources?.length
+                    ? (
+                      <div className={classes.EnhancedSearch__SearchModal__Sources}>
+                        <p className={classes.EnhancedSearch__SearchModal__SourcesTitle}>
+                          Summary generated from the following sources:
+                        </p>
+                        <div className={classes.EnhancedSearch__SearchModal__SourcesContainer}>
+                          {
+                            answer.sources.map((source, index) => {
+                              const urlParts = source.split('/');
+                              const label = (urlParts ? urlParts[urlParts.length - 1] : source)
+                                .split(/[-_]/)
+                                .map(word => word.replace(word[0], word[0].toUpperCase()))
+                                .join(' ');
 
-                            return (
-                              <a
-                                key={`source-${index}`}
-                                className={classes.EnhancedSearch__SearchModal__ResultSourceItem}
-                                href={source}
-                              >
-                                <div className={classes.EnhancedSearch__SearchModal__ResultSourceItemLabel}>
+                              return (
+                                <a
+                                  key={`source-${index}`}
+                                  className={classes.EnhancedSearch__SearchModal__SourceItem}
+                                  href={source}
+                                >
                                   <LinkIcon />
                                   {label}
-                                </div>
-                                <span className={classes.EnhancedSearch__SearchModal__ResultSourceItemSource}>
-                                  {source}
-                                </span>
-                              </a>
-                            );
-                          })
-                        }
+                                </a>
+                              );
+                            })
+                          }
+                        </div>
                       </div>
-                    </div>
-                  )
+                    )
+                    : null
                 }
               </div>
             )
