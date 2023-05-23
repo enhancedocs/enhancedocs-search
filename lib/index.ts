@@ -1,2 +1,2 @@
 export { default } from './Search';
-export { renderSearch } from './render-search';
+export { loadScript, appendGlobalStyles, renderSearch } from './render-search';

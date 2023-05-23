@@ -2,8 +2,11 @@ import { EnhancedSearchConfig } from '../../../Search';
 
 const BASE_URL = 'https://api.enhancedocs.com';
 
-export async function Get (route: string, config: EnhancedSearchConfig, options?: object) {
+export async function Get (route: string, config: EnhancedSearchConfig, options?: any) {
   const baseURL = config.apiBaseURL || BASE_URL;
+  if (options?.stream) {
+    return fetch(`${baseURL}${route}`, options);
+  }
   return fetch(`${baseURL}${route}`, options).then((response) => response.json());
 }
 

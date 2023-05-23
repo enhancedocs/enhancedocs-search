@@ -2,12 +2,12 @@ import CheckCircle from '../../../../../icons/CheckCircle';
 import classes from './Feedback.module.css';
 
 export type OnFeedbackType = {
-  answerId: string;
+  answerId?: string;
   usefulFeedback: boolean;
 }
 
 export type FeedbackProps = {
-  answerId: string;
+  answerId?: string;
   onFeedback: ({ answerId, usefulFeedback }: OnFeedbackType) => void;
   loading?: boolean;
   success?: boolean;
