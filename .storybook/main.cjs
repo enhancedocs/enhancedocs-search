@@ -10,9 +10,9 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions'
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-vite'
+  framework: {
+    name: '@storybook/react-vite',
+    options: {}
   },
   async viteFinal(config) {
     return mergeConfig(config, {
