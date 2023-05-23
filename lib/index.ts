@@ -1,2 +1,3 @@
 export { default } from './Search';
-export { renderSearch } from './render-search';
+export { default as SearchModal } from './components/search-modal/SearchModal';
+export { loadScript, appendGlobalStyles, renderSearch } from './render-search';

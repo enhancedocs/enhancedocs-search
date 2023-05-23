@@ -8,8 +8,9 @@ import Key from '../key/Key';
 import Answer from './components/answer/Answer';
 import Footer from './components/footer/Footer';
 import { getAnswers } from './services/answers';
+import type { AnswerData } from './services/answers';
+import { processStream } from './helpers/stream';
 import classes from './SearchModal.module.css';
-import type { AnswerType } from './services/answers.d';
 
 const INITIAL_ANSWER = { answerId: '', search: '', answer: '', sources: [] };
 
@@ -21,7 +22,8 @@ type SearchModalProps = {
 
 export default function SearchModal ({ config, isOpen, onClose }: SearchModalProps) {
   const inputRef = useRef(null);
-  const [answer, setAnswer] = useState<AnswerType>(INITIAL_ANSWER);
+  const answerContainerRef = useRef<HTMLDivElement>(null);
+  const [answer, setAnswer] = useState<AnswerData>(INITIAL_ANSWER);
   const [loadingAnswer, setLoadingAnswer] = useState(false);
 
   function handleClose () {
@@ -40,23 +42,31 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
       const search = formValues.search as string;
 
       if (search) {
-        const data = await getAnswers({ config: config.enhancedSearch, search });
-        setAnswer({
-          search,
-          answerId: data.answerId,
-          answer: data.answer,
-          sources: data.sources
+        const response = await getAnswers({ config, search });
+
+        setLoadingAnswer(false);
+
+        await processStream(response.body, (text, result: AnswerData) => {
+          setAnswer({
+            search,
+            answer: text,
+            answerId: result ? result.answerId : undefined,
+            threadId: result ? result.threadId : undefined,
+            sources: result ? result.sources : []
+          });
         });
+
         if (inputRef.current) {
           (inputRef.current as HTMLInputElement).blur();
+        }
+        if (answerContainerRef.current) {
+          answerContainerRef.current.scrollTop = answerContainerRef.current.scrollHeight;
         }
       } else {
         setAnswer(INITIAL_ANSWER);
       }
     } catch(error) {
       console.error('Search answers', error);
-    } finally {
-      setLoadingAnswer(false);
     }
   }
 
@@ -95,9 +105,9 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
       </form>
 
       <div className={classes.EnhancedSearch__SearchModal__InnerBody}>
-        <section>
+        <section ref={answerContainerRef}>
           <Answer
-            config={config.enhancedSearch}
+            config={config}
             answer={answer}
             loading={loadingAnswer}
           />

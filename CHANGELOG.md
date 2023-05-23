@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0] - 2023-05-23
+
+- 🆕 Get stream answer using `X-EnhanceDocs-Version 1.0`.
+- 🆕 Improve sources UX/UI.
+- 🆕 Export `SearchModal` as standalone component.
+- 🛠 BREAKING: Simplify `config` prop. Migrate from `config={{ enhancedConfig: { projectId, accessToken } }}` to `config={{ projectId, accessToken }}`.
+
 ## [0.2.1] - 2023-05-08
 
 - 🆕 Send answer feedback.

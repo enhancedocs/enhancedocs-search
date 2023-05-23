@@ -1,10 +1,38 @@
 import { Get, Post } from './instance';
-import type { AnswerType, GetAnswers, AnswerFeedbackType } from './answers.d';
+import type { Config } from '../../../Search';
 
-export function getAnswers ({ config, search }: GetAnswers): Promise<AnswerType> {
-  let url = `/ask?question=${search}`;
+export type AnswerData = {
+  answerId?: string;
+  threadId?: string;
+  search: string;
+  answer: string;
+  sources: Array<string>;
+};
+
+export type GetAnswers = {
+  config: Config;
+  search: string;
+  threadId?: string;
+}
+
+export type AnswerFeedbackType = {
+  answerId: string;
+  usefulFeedback: boolean;
+  config: Config;
+}
+
+export function getAnswers ({ config, search, threadId }: GetAnswers): Promise<any> {
+  let url = `/ask/stream?question=${search}`;
   if (config.projectId) url = `${url}&projectId=${config.projectId}`;
-  return Get(url, config, { headers: { Authorization: `Bearer ${config.accessToken}` } });
+  if (threadId) url = `${url}&threadId=${threadId}`;
+
+  return Get(url, config, {
+    headers: {
+      Authorization: `Bearer ${config.accessToken}`,
+      'X-EnhanceDocs-Version': '1.0'
+    },
+    stream: true
+  });
 }
 
 export function answerFeedback ({ answerId, usefulFeedback, config }: AnswerFeedbackType) {

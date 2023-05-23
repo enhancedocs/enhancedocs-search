@@ -9,14 +9,10 @@ import SearchModal from './components/search-modal/SearchModal';
 import classes from './Search.module.css';
 import './global.css';
 
-export type EnhancedSearchConfig = {
+export type Config = {
   projectId: string;
   accessToken: string;
   apiBaseURL?: string;
-}
-
-export type Config = {
-  enhancedSearch: EnhancedSearchConfig;
 }
 
 export type Theme = {

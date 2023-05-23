@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Search from './Search';
+import SearchModal from './components/search-modal/SearchModal';
 
-const ENHANCED_SEARCH_CONFIG = {
-  projectId: '642c2d009557653a6d46cdda',
-  accessToken: 'pk_c237abe4951408b069e6482ad7b4214ea7ce6901bf699dbe'
+const ENHANCED_CONFIG = {
+  projectId: '646a4e6158de6ee4ab3076cd',
+  accessToken: 'pk_919329ca3f52aeae4ba58aa1021f4a63eba7454d54ca86c7'
 };
 
 export default {
@@ -42,17 +43,30 @@ const Template: ComponentStory<typeof Search> = (args) => {
 
 export const EnhancedSearch = Template.bind({});
 EnhancedSearch.args = {
-  config: {
-    enhancedSearch: ENHANCED_SEARCH_CONFIG
-  }
+  config: ENHANCED_CONFIG
 };
 
 export const CustomTheme = Template.bind({});
 CustomTheme.args = {
-  config: {
-    enhancedSearch: ENHANCED_SEARCH_CONFIG
-  },
+  config: ENHANCED_CONFIG,
   theme: {
-    primaryColor: '#bdbe22'
+    primaryColor: '#009485'
   }
+};
+
+export const SearchModalStandalone = () => {
+  const [searchModal, setSearchModal] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setSearchModal(true)}>
+        Open Search Modal
+      </button>
+      <SearchModal
+        config={ENHANCED_CONFIG}
+        isOpen={searchModal}
+        onClose={() => setSearchModal(false)}
+      />
+    </>
+  );
 };

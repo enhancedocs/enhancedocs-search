@@ -1,17 +1,17 @@
 import { lazy, Suspense, useState } from 'react';
 import LinkIcon from '../../../icons/LinkIcon';
 import { answerFeedback } from '../../services/answers';
-import type { AnswerType } from '../../services/answers.d';
+import type { AnswerData } from '../../services/answers';
 import Feedback from './components/feedback/Feedback';
 import classes from './Answer.module.css';
 import type { OnFeedbackType } from './components/feedback/Feedback';
-import { EnhancedSearchConfig } from '../../../../Search';
+import type { Config } from '../../../../Search';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
 
 type AnswerProps = {
-  config: EnhancedSearchConfig;
-  answer: AnswerType;
+  config: Config;
+  answer: AnswerData;
   loading?: boolean;
 }
 
@@ -19,11 +19,13 @@ export default function Answer ({ config, answer, loading }: AnswerProps) {
   const [feedbackSuccess, setFeedbackSuccess] = useState(false);
 
   async function handleFeedback ({ answerId, usefulFeedback }: OnFeedbackType) {
-    try {
-      await answerFeedback({ answerId, usefulFeedback, config });
-      setFeedbackSuccess(true);
-    } catch (error) {
-      console.error('Feedback', error);
+    if (answerId) {
+      try {
+        await answerFeedback({ answerId, usefulFeedback, config });
+        setFeedbackSuccess(true);
+      } catch (error) {
+        console.error('Feedback', error);
+      }
     }
   }
 
@@ -59,44 +61,49 @@ export default function Answer ({ config, answer, loading }: AnswerProps) {
                   </ReactMarkdown>
                 </Suspense>
 
-                <Feedback
-                  answerId={answer.answerId}
-                  onFeedback={handleFeedback}
-                  success={feedbackSuccess}
-                />
+                {
+                  answer.answerId && (
+                    <Feedback
+                      answerId={answer.answerId}
+                      onFeedback={handleFeedback}
+                      success={feedbackSuccess}
+                    />
+                  )
+                }
 
-                <div className={classes.EnhancedSearch__SearchModal__ResultSources}>
-                  <p className={classes.EnhancedSearch__SearchModal__ResultSourcesTitle}>
-                    Summary generated from the following sources:
-                  </p>
-                  <div>
-                    {
-                      answer.sources.map((source, index) => {
-                        const urlParts = source.split('/');
-                        const label = (urlParts ? urlParts[urlParts.length - 1] : source)
-                          .split(/[-_]/)
-                          .map(word => word.replace(word[0], word[0].toUpperCase()))
-                          .join(' ');
+                {
+                  answer.sources?.length
+                    ? (
+                      <div className={classes.EnhancedSearch__SearchModal__Sources}>
+                        <p className={classes.EnhancedSearch__SearchModal__SourcesTitle}>
+                          Summary generated from the following sources:
+                        </p>
+                        <div className={classes.EnhancedSearch__SearchModal__SourcesContainer}>
+                          {
+                            answer.sources.map((source, index) => {
+                              const urlParts = source.split('/');
+                              const label = (urlParts ? urlParts[urlParts.length - 1] : source)
+                                .split(/[-_]/)
+                                .map(word => word.replace(word[0], word[0].toUpperCase()))
+                                .join(' ');
 
-                        return (
-                          <a
-                            key={`source-${index}`}
-                            className={classes.EnhancedSearch__SearchModal__ResultSourceItem}
-                            href={source}
-                          >
-                            <div className={classes.EnhancedSearch__SearchModal__ResultSourceItemLabel}>
-                              <LinkIcon />
-                              {label}
-                            </div>
-                            <span className={classes.EnhancedSearch__SearchModal__ResultSourceItemSource}>
-                              {source}
-                            </span>
-                          </a>
-                        );
-                      })
-                    }
-                  </div>
-                </div>
+                              return (
+                                <a
+                                  key={`source-${index}`}
+                                  className={classes.EnhancedSearch__SearchModal__SourceItem}
+                                  href={source}
+                                >
+                                  <LinkIcon />
+                                  {label}
+                                </a>
+                              );
+                            })
+                          }
+                        </div>
+                      </div>
+                    )
+                    : null
+                }
               </div>
             )
             : (
