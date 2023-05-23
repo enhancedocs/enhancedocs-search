@@ -42,7 +42,7 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
       const search = formValues.search as string;
 
       if (search) {
-        const response = await getAnswers({ config: config.enhancedSearch, search });
+        const response = await getAnswers({ config, search });
 
         setLoadingAnswer(false);
 
@@ -107,7 +107,7 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
       <div className={classes.EnhancedSearch__SearchModal__InnerBody}>
         <section ref={answerContainerRef}>
           <Answer
-            config={config.enhancedSearch}
+            config={config}
             answer={answer}
             loading={loadingAnswer}
           />

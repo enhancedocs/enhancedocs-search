@@ -1,5 +1,5 @@
 import { Get, Post } from './instance';
-import type { EnhancedSearchConfig } from '../../../Search';
+import type { Config } from '../../../Search';
 
 export type AnswerData = {
   answerId?: string;
@@ -10,7 +10,7 @@ export type AnswerData = {
 };
 
 export type GetAnswers = {
-  config: EnhancedSearchConfig;
+  config: Config;
   search: string;
   threadId?: string;
 }
@@ -18,7 +18,7 @@ export type GetAnswers = {
 export type AnswerFeedbackType = {
   answerId: string;
   usefulFeedback: boolean;
-  config: EnhancedSearchConfig;
+  config: Config;
 }
 
 export function getAnswers ({ config, search, threadId }: GetAnswers): Promise<any> {

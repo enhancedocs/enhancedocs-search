@@ -5,12 +5,12 @@ import type { AnswerData } from '../../services/answers';
 import Feedback from './components/feedback/Feedback';
 import classes from './Answer.module.css';
 import type { OnFeedbackType } from './components/feedback/Feedback';
-import { EnhancedSearchConfig } from '../../../../Search';
+import type { Config } from '../../../../Search';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
 
 type AnswerProps = {
-  config: EnhancedSearchConfig;
+  config: Config;
   answer: AnswerData;
   loading?: boolean;
 }

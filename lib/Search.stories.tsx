@@ -43,16 +43,12 @@ const Template: ComponentStory<typeof Search> = (args) => {
 
 export const EnhancedSearch = Template.bind({});
 EnhancedSearch.args = {
-  config: {
-    enhancedSearch: ENHANCED_CONFIG
-  }
+  config: ENHANCED_CONFIG
 };
 
 export const CustomTheme = Template.bind({});
 CustomTheme.args = {
-  config: {
-    enhancedSearch: ENHANCED_CONFIG
-  },
+  config: ENHANCED_CONFIG,
   theme: {
     primaryColor: '#009485'
   }
@@ -67,7 +63,7 @@ export const SearchModalStandalone = () => {
         Open Search Modal
       </button>
       <SearchModal
-        config={{ enhancedSearch: ENHANCED_CONFIG }}
+        config={ENHANCED_CONFIG}
         isOpen={searchModal}
         onClose={() => setSearchModal(false)}
       />
