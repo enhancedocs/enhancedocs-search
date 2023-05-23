@@ -57,3 +57,20 @@ CustomTheme.args = {
     primaryColor: '#009485'
   }
 };
+
+export const SearchModalStandalone = () => {
+  const [searchModal, setSearchModal] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setSearchModal(true)}>
+        Open Search Modal
+      </button>
+      <SearchModal
+        config={{ enhancedSearch: ENHANCED_CONFIG }}
+        isOpen={searchModal}
+        onClose={() => setSearchModal(false)}
+      />
+    </>
+  );
+};
