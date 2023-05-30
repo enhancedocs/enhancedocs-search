@@ -49,6 +49,9 @@ export default function Answer ({ config, answer, loading }: AnswerProps) {
                   <ReactMarkdown
                     className={classes.EnhancedSearch__SearchModal__ResultAnswer}
                     components={{
+                      pre(props) {
+                        return <pre className={classes.EnhancedSearch__SearchModal__ResultAnswerPre} {...props} />;
+                      },
                       code(props) {
                         return <code className={classes.EnhancedSearch__SearchModal__ResultAnswerCode} {...props} />;
                       },

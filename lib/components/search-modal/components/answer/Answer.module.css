@@ -35,8 +35,14 @@
 }
 
 .EnhancedSearch__SearchModal__ResultAnswerCode {
-  display: block;
   background: var(--enhancedocs-neutral-lighten2);
+  padding: 0px 4px;
+  border-radius: 4px;
+  overflow-x: scroll;
+}
+
+.EnhancedSearch__SearchModal__ResultAnswerPre {
+  background: var(--enhancedocs-white);
   padding: 8px;
   border-radius: 4px;
   overflow-x: scroll;
