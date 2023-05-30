@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import Search from './Search';
 import SearchModal from './components/search-modal/SearchModal';
 
@@ -11,9 +11,9 @@ const ENHANCED_CONFIG = {
 export default {
   title: 'Search',
   component: Search
-} as ComponentMeta<typeof Search>;
+} as Meta<typeof Search>;
 
-const Template: ComponentStory<typeof Search> = (args) => {
+const Template: StoryFn<typeof Search> = (args) => {
   const [currentTheme, setCurrentTheme] = useState('light');
 
   function toggleMode() {
