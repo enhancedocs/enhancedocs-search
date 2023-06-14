@@ -1,7 +1,7 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "Apache-2.0",
   "author": "EnhanceDocs",
   "contributors": [
@@ -44,6 +44,7 @@
     "react-dom": "^17.x || ^18.x"
   },
   "dependencies": {
+    "mixpanel-browser": "^2.47.0",
     "react-markdown": "^8.0.6",
     "react-modal": "^3.16.1"
   },
@@ -57,6 +58,7 @@
     "@storybook/react-vite": "^7.0.13",
     "@storybook/theming": "^7.0.13",
     "@types/lodash.debounce": "^4.0.7",
+    "@types/mixpanel-browser": "^2.38.1",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@types/react-modal": "^3.13.1",

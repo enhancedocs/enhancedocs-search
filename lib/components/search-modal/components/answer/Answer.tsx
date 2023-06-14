@@ -6,6 +6,7 @@ import Feedback from './components/feedback/Feedback';
 import classes from './Answer.module.css';
 import type { OnFeedbackType } from './components/feedback/Feedback';
 import type { Config } from '../../../../Search';
+import mixpanel from 'mixpanel-browser';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
 
@@ -21,6 +22,12 @@ export default function Answer ({ config, answer, loading }: AnswerProps) {
   async function handleFeedback ({ answerId, usefulFeedback }: OnFeedbackType) {
     if (answerId) {
       try {
+        if (!config.telemetryDisabled) {
+          mixpanel.track('Shared Feedback', {
+            'channel': 'DOCUMENTATION',
+            'type': 'CHAT'
+          });
+        }
         await answerFeedback({ answerId, usefulFeedback, config });
         setFeedbackSuccess(true);
       } catch (error) {
