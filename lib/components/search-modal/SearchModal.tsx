@@ -11,6 +11,7 @@ import { getAnswers } from './services/answers';
 import type { AnswerData } from './services/answers';
 import { processStream } from './helpers/stream';
 import classes from './SearchModal.module.css';
+import mixpanel from 'mixpanel-browser';
 
 const INITIAL_ANSWER = { answerId: '', search: '', answer: '', sources: [] };
 
@@ -35,6 +36,12 @@ export default function SearchModal ({ config, isOpen, onClose }: SearchModalPro
     event.preventDefault();
 
     try {
+      if (!config.telemetryDisabled) {
+        mixpanel.track('Question Asked', {
+          'channel': 'DOCUMENTATION',
+          'type': 'SEARCH'
+        });
+      }
       setLoadingAnswer(true);
 
       const data = new FormData(event.target as HTMLFormElement);
