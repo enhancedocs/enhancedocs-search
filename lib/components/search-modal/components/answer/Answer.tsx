@@ -94,7 +94,7 @@ export default function Answer ({ config, answer, loading }: AnswerProps) {
                               const urlParts = source.split('/');
                               const label = (urlParts ? urlParts[urlParts.length - 1] : source)
                                 .split(/[-_]/)
-                                .map(word => word.replace(word[0], word[0].toUpperCase()))
+                                .map(word => word && word.length > 0 ? word.replace(word[0], word[0].toUpperCase()) : '')
                                 .join(' ');
 
                               return (

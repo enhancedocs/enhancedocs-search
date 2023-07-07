@@ -1,7 +1,7 @@
 {
   "name": "enhancedocs-search",
   "description": "EnhanceDocs Search",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "license": "Apache-2.0",
   "author": "EnhanceDocs",
   "contributors": [
@@ -50,13 +50,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
-    "@storybook/addon-actions": "^7.0.13",
-    "@storybook/addon-essentials": "^7.0.13",
-    "@storybook/addon-interactions": "^7.0.13",
-    "@storybook/addon-links": "^7.0.13",
-    "@storybook/react": "^7.0.13",
-    "@storybook/react-vite": "^7.0.13",
-    "@storybook/theming": "^7.0.13",
+    "@storybook/addon-actions": "^7.0.26",
+    "@storybook/addon-essentials": "^7.0.26",
+    "@storybook/addon-interactions": "^7.0.26",
+    "@storybook/addon-links": "^7.0.26",
+    "@storybook/react": "^7.0.26",
+    "@storybook/react-vite": "^7.0.26",
+    "@storybook/theming": "^7.0.26",
     "@types/lodash.debounce": "^4.0.7",
     "@types/mixpanel-browser": "^2.38.1",
     "@types/react": "^18.0.33",
@@ -71,7 +71,7 @@
     "eslint-plugin-storybook": "^0.6.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "storybook": "^7.0.13",
+    "storybook": "^7.0.26",
     "typescript": "^4.9.3",
     "vite": "^4.2.1"
   }
