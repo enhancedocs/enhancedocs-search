@@ -4,9 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.0] - 2023-07-07
+
+- 🛠 Upgrade Storybook from v6 to v7.
+- 🐞 Link formatting `toUpperCase` error.
+
 ## [1.0.2] - 2023-06-14
 
-- 🆕 Add telemetry
+- 🆕 Add telemetry.
 
 ## [1.0.1] - 2023-05-30
 
